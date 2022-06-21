@@ -14,9 +14,9 @@
 
             <!-- Username -->
             <div>
-                <x-label for="nameuser" :value="__('Username')" />
+                <x-label for="namauser" :value="__('Username')" />
 
-                <x-input id="nameuser" class="block mt-1 w-full" type="text" name="nameuser" :value="old('nameuser')" required autofocus />
+                <x-input id="namauser" class="block mt-1 w-full" type="text" name="namauser" :value="old('namauser')" required autofocus />
             </div>
 
             <!-- Name -->
@@ -28,9 +28,9 @@
 
             <!-- Level -->
             <div class="mt-4">
-                <x-label for="level" :value="__('Level')" />
+                <x-label for="golongan" :value="__('Golongan')" />
 
-                <select name="level" id="level">
+                <select name="golongan" id="golongan">
                     <option value="0">0 - Superadmin</option>
                     <option value="1">1 - User HO</option>
                     <option value="2">2 - Admin Site</option>
@@ -40,11 +40,11 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="sandi" :value="__('Sandi')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-input id="sandi" class="block mt-1 w-full"
                                 type="password"
-                                name="password"
+                                name="sandi"
                                 required />
             </div>
 
