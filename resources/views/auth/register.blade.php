@@ -40,11 +40,11 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('password')" />
+                <x-label for="sandi" :value="__('password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-input id="sandi" class="block mt-1 w-full"
                                 type="password"
-                                name="password"
+                                name="sandi"
                                 required />
             </div>
 

@@ -21,7 +21,7 @@ class User extends Authenticatable
         'namauser',
         'nama',
         'golongan',
-        'password',
+        'sandi',
     ];
 
     /**
@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'sandi',
         'remember_token',
     ];
 
@@ -42,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->sandi;
+    }
 }
