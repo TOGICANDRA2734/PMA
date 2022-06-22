@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('namauser')->unique();
             $table->string('nama');
             $table->integer('golongan');
-            $table->string('sandi');
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
