@@ -21,6 +21,13 @@ Route::get('/home', function () {
     return view('home.index');
 })->middleware(['auth'])->name('home.index');
 
+Route::prefix('plant')->group(function(){
+    Route::group(['middleware' => 'auth'], function (){        
+        Route::get('/populasi-unit', function () {
+            return view('plant.index');
+        })->name('plant.index');
 
+    });
+});
 
 require __DIR__.'/auth.php';
