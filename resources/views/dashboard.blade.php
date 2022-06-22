@@ -920,6 +920,7 @@
                   </div>
                 </div>
               </div>
+              
             </div>
           </div>
         </main>
@@ -996,15 +997,18 @@
             LOGIN
           </p>
           <!-- Modal description -->
-          <form class="flex flex-col items-start">
+          <form method="POST" action="{{route('login')}}" class="flex flex-col items-start">
+            @csrf
             <!-- Username -->
-            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" type="text" placeholder="Username" required oninvalid="this.setCustomValidity('Silahkan masukkan username')" oninput="this.setCustomValidity('')">
+            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" id="namauser" name="namauser" type="text" placeholder="Username" required oninvalid="this.setCustomValidity('Silahkan masukkan username')" oninput="this.setCustomValidity('')">
             <!-- Password -->
-            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" type="password" placeholder="Password" required oninvalid="this.setCustomValidity('Silahkan masukkan password')" oninput="this.setCustomValidity('')">
-            <!-- Checkbox -->
-            <div class="flex justify-start items-center mb-3 ">
-              <input type="checkbox" name="simpan" id="simpan">
-              <label class="pl-2" for="simpan">Simpan Data</label>  
+            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" id="password" name="password" type="password" placeholder="Password" required oninvalid="this.setCustomValidity('Silahkan masukkan password')" oninput="this.setCustomValidity('')">
+            <!-- Remember Me -->
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
             </div>
             <!-- Button Login -->
             <button class="w-full p-3 border border-gray-100 rounded-md mb-3 hover:bg-green-400 hover:text-white uppercase transition duration-200" type="submit">Login</button>
