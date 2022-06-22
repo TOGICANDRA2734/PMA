@@ -202,31 +202,19 @@
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="pages/login.html">Login</a>
+                      <a class="w-full" href="pages/login.html">Transaksi</a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="pages/create-account.html">
-                        Create account
+                      <a class="w-full" href="#">
+                        Laporan
+                        <ul class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900">
+                          <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            <a href="">Populasi Unit</a>
+                          </li>
+                        </ul>
                       </a>
-                    </li>
-                    <li
-                      class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    >
-                      <a class="w-full" href="pages/forgot-password.html">
-                        Forgot password
-                      </a>
-                    </li>
-                    <li
-                      class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    >
-                      <a class="w-full" href="pages/404.html">404</a>
-                    </li>
-                    <li
-                      class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                    >
-                      <a class="w-full" href="pages/blank.html">Blank</a>
                     </li>
                   </ul>
                 </template>
@@ -314,6 +302,7 @@
           <div class="px-6 my-6">
             @if(null !== Auth::user())
             <form method="POST" action="{{ route('logout') }}">
+              @csrf
               <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 Logout
               </button>
@@ -679,12 +668,9 @@
                   aria-label="Account"
                   aria-haspopup="true"
                 >
-                  <img
-                    class="object-cover w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
-                    alt=""
-                    aria-hidden="true"
-                  />
+                @unless (! Auth::check())
+                  {{Auth::user()->namauser}}
+                @endunless
                 </button>
                 <template x-if="isProfileMenuOpen">
                   <ul
@@ -848,13 +834,20 @@
           >
             LOGIN
           </p>
+
+          <!-- Session Status -->
+          <x-auth-session-status class="mb-4" :status="session('status')" />
+
+          <!-- Validation Errors -->
+          <x-auth-validation-errors class="mb-4" :errors="$errors" />
+
           <!-- Modal description -->
           <form method="POST" action="{{route('login')}}" class="flex flex-col items-start">
             @csrf
             <!-- Username -->
             <input class="w-full p-3 border border-gray-100 rounded-md mb-3" id="namauser" name="namauser" type="text" placeholder="Username" required oninvalid="this.setCustomValidity('Silahkan masukkan username')" oninput="this.setCustomValidity('')">
             <!-- Password -->
-            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" id="password" name="password" type="password" placeholder="Password" required oninvalid="this.setCustomValidity('Silahkan masukkan password')" oninput="this.setCustomValidity('')">
+            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" id="sandi" name="sandi" type="password" placeholder="Password" required oninvalid="this.setCustomValidity('Silahkan masukkan password')" oninput="this.setCustomValidity('')">
             <!-- Remember Me -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
@@ -870,7 +863,5 @@
     </div>
     <!-- End of modal backdrop -->
     @endunless
-
-    @
   </body>
 </html>
