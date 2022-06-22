@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\testingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +30,7 @@ Route::prefix('plant')->group(function(){
 
     });
 });
+
+Route::get('/coba', [testingController::class, 'index']);
 
 require __DIR__.'/auth.php';
