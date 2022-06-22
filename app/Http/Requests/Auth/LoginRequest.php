@@ -58,6 +58,8 @@ class LoginRequest extends FormRequest
         // event(new LoginHistory($user));
 
         RateLimiter::clear($this->throttleKey());
+        
+        return redirect()->route('home.index');
     }
 
     /**
