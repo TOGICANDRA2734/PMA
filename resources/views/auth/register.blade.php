@@ -18,6 +18,25 @@
 
                 <x-input id="namauser" class="block mt-1 w-full" type="text" name="namauser" :value="old('namauser')" required autofocus />
             </div>
+            
+            <!-- Pic -->
+            <div class="mt-4">
+                <x-label for="pic" :value="__('Foto Profil')" />
+
+                <x-input id="pic" class="block mt-1 w-full" type="file" name="pic" :value="old('pic')" required />
+            </div>
+
+            <!-- Location -->
+            <div class="mt-4">
+                <x-label for="location" :value="__('Location')" />
+
+                <select name="location" id="location">
+                    <option value="0">Contoh site 1</option>
+                    <option value="1">Contoh site 2</option>
+                    <option value="2">Contoh site 3</option>
+                    <option value="3">Contoh site 4</option>
+                </select>
+            </div>
 
             <!-- Name -->
             <div class="mt-4">

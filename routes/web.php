@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PopulasiUnitController;
 use App\Http\Controllers\testingController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,7 @@ Route::get('/home', function () {
 
 Route::prefix('plant')->group(function(){
     Route::group(['middleware' => 'auth'], function (){        
-        Route::get('/populasi-unit', function () {
-            return view('plant.index');
-        })->name('plant.index');
+        Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
 
     });
 });

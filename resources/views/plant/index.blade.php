@@ -10,27 +10,26 @@
         <div class="grid grid-cols-4 gap-4">
             <select class="p-2 border border-gray-100 rounded-md" name="" id="">
                 <option value="" selected disabled>Bulan</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                @for ($x=1; $x<=12; $x++)
+                    <option value="{{$x}}">{{ date('F', mktime(0,0,0, $x, 1)) }}</option>
+                @endfor
             </select>
             <select class="p-2 border border-gray-100 rounded-md" name="" id="">
                 <option value="" selected disabled>Tahun</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                @for ($y=0; $y<count($tahun); $y++)
+                    <option value="">{{$tahun[$y]}}</option>
+                @endfor
             </select>
+
             <select class="p-2 border border-gray-100 rounded-md" name="" id="">
                 <option value="" selected disabled>Site</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                @foreach ($site as $st)
+                    <option value="{{$st->kodesite}}">{{$st->namasite}}</option>
+                @endforeach
             </select>
             <select class="p-2 border border-gray-100 rounded-md" name="" id="">
                 <option value="" selected disabled>Jenis/Type</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+                <option value="">{{$jenis}}</option>
             </select>
         </div>
 
