@@ -19,16 +19,19 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/home', function () {
-    return view('home.index');
-})->middleware(['auth'])->name('home.index');
+// Route::get('/home', function () {
+//     return view('home.index');
+// })->middleware(['auth'])->name('home.index');
 
-Route::prefix('plant')->group(function(){
-    Route::group(['middleware' => 'auth'], function (){        
-        Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
+Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
 
-    });
-});
+
+// Route::prefix('plant')->group(function(){
+//     Route::group(['middleware' => 'auth'], function (){        
+//         Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
+
+//     });
+// });
 
 Route::get('/coba', [testingController::class, 'index']);
 
