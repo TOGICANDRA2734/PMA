@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\PopulasiUnitController;
 use App\Http\Controllers\testingController;
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +26,7 @@ Route::get('/', function () {
 // })->middleware(['auth'])->name('home.index');
 
 Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
-
+Route::get('/page', [PageController::class, 'index'])->name('page.index');
 
 // Route::prefix('plant')->group(function(){
 //     Route::group(['middleware' => 'auth'], function (){        

@@ -29,10 +29,11 @@
             <select class="p-2 border border-gray-100 rounded-md" name="jenis" id="jenis">
                 <option value="" selected disabled>Jenis/Type</option>
                 @foreach ($jenis as $jns)
-                    <option value="{{$jns}}">{{$jns}}</option>
+                    
+                    <option value="{{$jns}}">{{$jns[0]}} {{$jns[1]}}</option>
                 @endforeach
             </select>
-            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold">Select</button>
+            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
         </form>
 
         <!-- Content Table -->
@@ -54,25 +55,26 @@
 
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        @for($i=0; $i<count($data); $i++) <tr class="text-gray-700 dark:text-gray-400">
-                            <td class="px-4 py-3 text-sm">
-                                {{(($data->currentPage()-1) * $data->perPage()) + ($i+1)}}
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{$data[$i]->NOM_UNIT}}
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{number_format($data[$i]->WH, 1)}}
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{number_format($data[$i]->BD, 1)}}
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{number_format($data[$i]->STB, 1)}}
-                            </td>
-                            <td class="px-4 py-3 text-sm">
-                                {{number_format($data[$i]->MOHH, 0)}}
-                            </td>
+                        @for($i=0; $i<count($data); $i++) 
+                            <tr class="text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                                <td class="px-4 py-3 text-sm">
+                                    {{(($data->currentPage()-1) * $data->perPage()) + ($i+1)}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{$data[$i]->NOM_UNIT}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->WH, 1)}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->BD, 1)}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->STB, 1)}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->MOHH, 0)}}
+                                </td>
                             </tr>
                             @endfor
                     </tbody>
@@ -82,7 +84,5 @@
                 {{$data->links()}}
             </div>
         </div>
-
-
 </main>
 @endsection

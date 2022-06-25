@@ -59,7 +59,7 @@ function data() {
     togglePagesMenu3() {
       this.isPagesMenuOpen3 = !this.isPagesMenuOpen3
     },
-    // Modal
+    // Modal 1 - Login
     isModalOpen: false,
     trapCleanup: null,
     openModal() {
@@ -68,6 +68,18 @@ function data() {
     },
     closeModal() {
       this.isModalOpen = false
+      this.trapCleanup()
+    },
+    
+    // Modal 2
+    isModalOpen2: false,
+    trapCleanup: null,
+    openModal2() {
+      this.isModalOpen2 = true
+      this.trapCleanup = focusTrap(document.querySelector('#modal2'))
+    },
+    closeModal2() {
+      this.isModalOpen2 = false
       this.trapCleanup()
     },
   }
