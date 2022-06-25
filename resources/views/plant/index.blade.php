@@ -7,43 +7,45 @@
             Populasi Unit
         </h2>
 
-        <form action="{{route('plant.index')}}" method="GET" class="grid grid-cols-4 gap-4">
-            <select class="p-2 border border-gray-100 rounded-md" name="" id="">
+        <form action="{{route('plant.index')}}" method="GET" class="grid grid-cols-5 gap-4">
+            <select class="p-2 border border-gray-100 rounded-md" name="bulan" id="bulan">
                 <option value="" selected disabled>Bulan</option>
-                @for ($x=1; $x<=12; $x++) <option value="{{$x}}">{{ date('F', mktime(0,0,0, $x, 1)) }}</option>
-                    @endfor
+                @for ($x=1; $x<=12; $x++)
+                    <option value="{{$x}}">{{ date('F', mktime(0,0,0, $x, 1)) }}</option>
+                @endfor
             </select>
-            <select class="p-2 border border-gray-100 rounded-md" name="" id="">
+            <select class="p-2 border border-gray-100 rounded-md" name="tahun" id="tahun">
                 <option value="" selected disabled>Tahun</option>
-                @for ($y=0; $y<count($tahun); $y++) <option value="{{$tahun[$y]}}">{{$tahun[$y]}}</option>
-                    @endfor
+                @for ($y=0; $y<count($tahun); $y++) 
+                    <option value="{{$tahun[$y]}}">{{$tahun[$y]}}</option>
+                @endfor
             </select>
-
-            <select class="p-2 border border-gray-100 rounded-md" name="" id="">
+            <select class="p-2 border border-gray-100 rounded-md" name="site" id="site">
                 <option value="" selected disabled>Site</option>
                 @foreach ($site as $st)
-                <option value="{{$st->kodesite}}">{{$st->namasite}} - {{$st->lokasi}}</option>
+                    <option value="{{$st->kodesite}}">{{$st->namasite}} - {{$st->lokasi}}</option>
                 @endforeach
             </select>
-            <select class="p-2 border border-gray-100 rounded-md" name="" id="">
+            <select class="p-2 border border-gray-100 rounded-md" name="jenis" id="jenis">
                 <option value="" selected disabled>Jenis/Type</option>
                 @foreach ($jenis as $jns)
-                <option value="{{$jns}}">{{$jns}}</option>
+                    <option value="{{$jns}}">{{$jns}}</option>
                 @endforeach
             </select>
+            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold">Select</button>
         </form>
 
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5">
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap border">
-                    <thead>
-                        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                            <th rowspan="2" class="px-4 py-3 border-b border-r">No</th>
-                            <th rowspan="2" class="px-4 py-3 border-b border-r">No Unit</th>
+                    <thead class="bg-stone-800">
+                        <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No</th>
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
                             <th colspan="4" class="px-4 py-3 text-center border-none">Jam Unit</th>
                         </tr>
-                        <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3 border">WH</th>
                             <th class="px-4 py-3 border">BD</th>
                             <th class="px-4 py-3 border">STB</th>
@@ -76,23 +78,8 @@
                     </tbody>
                 </table>
             </div>
-            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800 border">
-                <span class="flex items-center col-span-3">
-                    Showing {{$data->currentPage() * $data->perPage()}}-{{($data->currentPage() * $data->perPage())+$data->perPage()}} of {{$data->total()}}
-                </span>
-                <span class="col-span-2"></span>
-                <!-- Pagination -->
-                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                    <nav aria-label="Table navigation">
-                        <ul class="inline-flex items-center">
-                            <li>
-                                <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
-                                    {{$data->links()}}
-                                </button>
-                            </li>
-                        </ul>
-                    </nav>
-                </span>
+            <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">
+                {{$data->links()}}
             </div>
         </div>
 

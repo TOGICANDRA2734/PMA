@@ -745,8 +745,6 @@
             <div id="aboutUs" class="hidden text-white">
                 <img class="w-10 h-10" src="{{asset('images/logo.png')}}" alt="">
             </div>
-            
-            
         </footer>
       </div>
     </div>
@@ -836,5 +834,8 @@
     </div>
     <!-- End of modal backdrop -->
     @endunless
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @yield('javascripts')
   </body>
 </html>
