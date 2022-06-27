@@ -26,7 +26,7 @@ class User extends Authenticatable
         'nama',
         'golongan',
         'pic',
-        'location',
+        'kodesite',
         'sandi',
     ];
 

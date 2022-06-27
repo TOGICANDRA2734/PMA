@@ -28,9 +28,9 @@
 
             <!-- Location -->
             <div class="mt-4">
-                <x-label for="location" :value="__('Location')" />
+                <x-label for="kodesite" :value="__('Location')" />
 
-                <select name="location" id="location">
+                <select name="kodesite" id="kodesite">
                     <option value="0">Contoh site 1</option>
                     <option value="1">Contoh site 2</option>
                     <option value="2">Contoh site 3</option>

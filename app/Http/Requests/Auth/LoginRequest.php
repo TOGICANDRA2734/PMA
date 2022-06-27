@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -47,21 +48,33 @@ class LoginRequest extends FormRequest
 
         // dd($this->namauser, md5($this->sandi));
 
-        if (! Auth::attempt(['namauser' => $this->namauser, 'password' => md5($this->sandi)], $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        // if (! Auth::attempt(['namauser' => $this->namauser, 'password' => md5($this->sandi)], $this->boolean('remember'))) {
+        //     RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-                'namauser' => trans('auth.failed'),
-            ]);
+        //     throw ValidationException::withMessages([
+        //         'namauser' => trans('auth.failed'),
+        //     ]);
+        // }
+
+        $user = User::where('namauser', request()->get('namauser'))->where('sandi', md5(request()->sandi))->first();
+
+        // dd($user);
+
+        if($user){
+            Auth::login($user);
+
+            RateLimiter::clear($this->throttleKey());
+            return redirect()->route('dashboard');
         }
-
-        $user = Auth::user();
+        // $user = Auth::user();
         
         // event(new LoginHistory($user));
 
-        RateLimiter::clear($this->throttleKey());
-        
-        return redirect()->route('home.index');
+        RateLimiter::hit($this->throttleKey());
+
+        throw ValidationException::withMessages([
+            'namauser' => trans('auth.failed'),
+        ]);
     }
 
     /**

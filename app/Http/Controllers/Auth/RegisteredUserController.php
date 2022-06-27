@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'nama' => 'required|string|max:50',
             'golongan' => 'required|int|max:50',
             'pic' => 'required|string',
-            'location' => 'required|string|max:1',
+            'kodesite' => 'required|string|max:1',
             'sandi' => ['required', Rules\Password::defaults()],
         ]);
 
@@ -47,8 +47,8 @@ class RegisteredUserController extends Controller
             'nama' => $request->nama,
             'golongan' => $request->golongan,
             'pic' => $request->pic,
-            'location' => $request->location,
-            'sandi' => Hash::make(md5($request->sandi)),
+            'kodesite' => $request->kodesite,
+            'sandi' => md5($request->sandi),
         ]);
 
         event(new Registered($user));

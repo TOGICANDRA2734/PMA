@@ -21,9 +21,9 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Route::get('/home', function () {
-//     return view('home.index');
-// })->middleware(['auth'])->name('home.index');
+Route::get('/home', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
 Route::get('/page', [PageController::class, 'index'])->name('page.index');

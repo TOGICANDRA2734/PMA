@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('golongan');
             $table->string('sandi');
             $table->string('pic');
-            $table->string('location');
+            $table->string('kodesite');
             $table->rememberToken();
             $table->timestamps();
         });
