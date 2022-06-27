@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\cobacobacontroller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PopulasiUnitController;
 use App\Http\Controllers\testingController;
@@ -27,6 +28,8 @@ Route::get('/home', function () {
 
 Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
 Route::get('/page', [PageController::class, 'index'])->name('page.index');
+Route::get('/cobacoba', [cobacobacontroller::class, 'index'])->name('cobacoba');
+Route::get('/store', [cobacobacontroller::class, 'index'])->name('cobacoba');
 
 // Route::prefix('plant')->group(function(){
 //     Route::group(['middleware' => 'auth'], function (){        

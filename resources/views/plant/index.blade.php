@@ -7,32 +7,31 @@
             Populasi Unit
         </h2>
 
-        <form action="{{route('plant.index')}}" method="GET" class="grid grid-cols-5 gap-4">
-            <select class="p-2 border border-gray-100 rounded-md" name="bulan" id="bulan">
-                <option value="" selected disabled>Bulan</option>
-                @for ($x=1; $x<=12; $x++)
-                    <option value="{{$x}}">{{ date('F', mktime(0,0,0, $x, 1)) }}</option>
-                @endfor
-            </select>
-            <select class="p-2 border border-gray-100 rounded-md" name="tahun" id="tahun">
-                <option value="" selected disabled>Tahun</option>
-                @for ($y=0; $y<count($tahun); $y++) 
-                    <option value="{{$tahun[$y]}}">{{$tahun[$y]}}</option>
-                @endfor
-            </select>
-            <select class="p-2 border border-gray-100 rounded-md" name="site" id="site">
-                <option value="" selected disabled>Site</option>
-                @foreach ($site as $st)
-                    <option value="{{$st->kodesite}}">{{$st->namasite}} - {{$st->lokasi}}</option>
-                @endforeach
-            </select>
-            <select class="p-2 border border-gray-100 rounded-md" name="jenis" id="jenis">
-                <option value="" selected disabled>Jenis/Type</option>
-                @foreach ($jenis as $jns)
-                    
-                    <option value="{{$jns}}">{{$jns[0]}} {{$jns[1]}}</option>
-                @endforeach
-            </select>
+        <form action="{{route('plant.index')}}" method="GET" class="grid grid-cols-4 gap-4">
+            <!-- Bulan -->
+            <div class="">
+                <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>
+                <input type="month" name="bulan" id="bulan" class="p-2 border border-gray-100 rounded-md w-full">
+            </div>
+
+            <div class="">
+                <label fo class="font-bold pb-1 text-sm"r="site">Nama Site</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full" name="site" id="site">
+                    <option value="" selected disabled>Site</option>
+                    @foreach ($site as $st)
+                        <option value="{{$st->kodesite}}">{{$st->namasite}} - {{$st->lokasi}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <label class="font-bold pb-1 text-sm" for="jenis">Jenis</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full" name="jenis" id="jenis">
+                    <option value="" selected disabled>Jenis/Type</option>
+                    @foreach ($jenis as $jns)
+                        <option value="{{$jns->kode_unit}}">{{$jns->kode_unit}}</option>
+                    @endforeach
+                </select>
+            </div>
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
         </form>
 
