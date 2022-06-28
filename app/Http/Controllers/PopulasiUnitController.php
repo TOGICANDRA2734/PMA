@@ -71,9 +71,21 @@ class PopulasiUnitController extends Controller
             })
             ->groupBy('NOM_UNIT')
             ->get();
+        
+        $filter = $data->map(function($value){
+            $value->NOM_UNIT = substr($value->NOM_UNIT,0,2);  
+            return $value;
+        })->groupBy('NOM_UNIT')->mapWithKeys(function($group, $key){
+            return [$key => (object)[
+                'WH' => $group->sum('WH'),
+                'BD' => $group->sum('BD'),
+                'STB' => $group->sum('STB'),
+                'MOHH' => $group->sum('MOHH'),
+            ]];
+        });
         $data = $data->values()->paginate(50)->withQueryString();
-        // dd($data);
+        
 
-        return view('plant.index', compact('site', 'jenis', 'data'));
+        return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
     }
 }

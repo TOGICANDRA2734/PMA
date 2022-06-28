@@ -37,7 +37,7 @@
         </form>
 
         <!-- Content Table -->
-        <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5">
+        <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap border table-fixed">
                     <thead class="bg-stone-800">
@@ -84,6 +84,32 @@
             <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">
                 {{$data->links()}}
             </div>
+        </div>
+
+        <!-- Hasil -->
+        <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+            Hasil Per Unit
+        </h4>
+        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+            @foreach($filter as $filter_no => $value)
+                <!-- Card -->
+                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
+                    <div>
+                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400" >
+                            {{$filter_no}}
+                        </p>
+                        <div class="flex">
+                            @foreach ($value as $key => $values)
+                                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200" >
+                                    {{$key}} - {{number_format($values,0) }}
+                                </p>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
 </main>
 @endsection
