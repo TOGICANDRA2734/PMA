@@ -94,7 +94,6 @@
         </h4>
         <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
             @foreach($filter as $filter_no => $value)
-                <!-- Card -->
                 <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
                     <div>
                         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400" >
