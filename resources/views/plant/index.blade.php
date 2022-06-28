@@ -11,15 +11,16 @@
             <!-- Bulan -->
             <div class="">
                 <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>
-                <input type="month" name="bulan" id="bulan" class="p-2 border border-gray-100 rounded-md w-full">
+                <input value="{{ request()->bulan == null ? date('Y-m') : old('bulan', request()->bulan)}}" type="month" name="bulan" id="bulan" class="p-2 border border-gray-100 rounded-md w-full">
             </div>
 
             <div class="">
                 <label fo class="font-bold pb-1 text-sm"r="site">Nama Site</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="site" id="site">
-                    <option value="" selected disabled>Site</option>
+                    <option value="" selected>Semua Site</option>
+
                     @foreach ($site as $st)
-                        <option value="{{$st->kodesite}}">{{$st->namasite}} - {{$st->lokasi}}</option>
+                        <option value="{{$st->kodesite}}" {{old('site', request()->site) == $st->kodesite ? 'selected' : ''}}>{{$st->namasite}} - {{$st->lokasi}}</option>
                     @endforeach
                 </select>
             </div>
@@ -28,7 +29,7 @@
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="jenis" id="jenis">
                     <option value="" selected disabled>Jenis/Type</option>
                     @foreach ($jenis as $jns)
-                        <option value="{{$jns->kode_unit}}">{{$jns->kode_unit}}</option>
+                        <option value="{{$jns->kode_unit}}" {{old('jenis', request()->jenis) == $jns->kode_unit ? 'selected' : ''}}>{{$jns->kode_unit}}</option>
                     @endforeach
                 </select>
             </div>
@@ -38,24 +39,24 @@
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5">
             <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap border">
+                <table class="w-full whitespace-no-wrap border table-fixed">
                     <thead class="bg-stone-800">
-                        <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
-                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No</th>
-                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
+                        <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-1/3">No Unit</th>
                             <th colspan="4" class="px-4 py-3 text-center border-none">Jam Unit</th>
                         </tr>
-                        <tr class="text-xs font-semibold tracking-wide text-left text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+                        <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3 border">WH</th>
                             <th class="px-4 py-3 border">BD</th>
                             <th class="px-4 py-3 border">STB</th>
                             <th class="px-4 py-3 border">MOHH</th>
                         </tr>
-
                     </thead>
+
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @for($i=0; $i<count($data); $i++) 
-                            <tr class="text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                            <tr class="text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
                                 <td class="px-4 py-3 text-sm">
                                     {{(($data->currentPage()-1) * $data->perPage()) + ($i+1)}}
                                 </td>
@@ -77,6 +78,7 @@
                             </tr>
                             @endfor
                     </tbody>
+
                 </table>
             </div>
             <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">

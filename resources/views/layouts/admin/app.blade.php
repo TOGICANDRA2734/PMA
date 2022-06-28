@@ -39,7 +39,7 @@
       >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
-            class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
+            class="ml-6 text-xl uppercase  font-bold text-gray-800 dark:text-gray-200"
             href="#"
           >
             PMA 2023
@@ -47,7 +47,7 @@
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                class="absolute inset-y-0 left-0 w-1 bg-green-600 rounded-tr-lg rounded-br-lg"
                 aria-hidden="true"
               ></span>
               <a
@@ -276,14 +276,14 @@
             @if(null !== Auth::user())
             <form method="POST" action="{{ route('logout') }}">
               @csrf
-              <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+              <button class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
                 Logout
               </button>
             </form>
             @else
             <button
               @click="openModal"
-              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
             >
               Login 
             </button>
@@ -320,12 +320,12 @@
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
             href="#"
           >
-            Windmill
+            PMA 2023
           </a>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
               <span
-                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                class="absolute inset-y-0 left-0 w-1 bg-green-600 rounded-tr-lg rounded-br-lg"
                 aria-hidden="true"
               ></span>
               <a
@@ -565,7 +565,7 @@
           <div class="px-6 my-6">
             <button
               @click="openModal"
-              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green"
             >
               Login
             </button>
@@ -573,13 +573,13 @@
         </div>
       </aside>
       <div class="flex flex-col flex-1 w-full">
-        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+        <header class="z-10 py-4 bg-stone-800 shadow-md dark:bg-gray-800">
           <div
-            class="container flex items-center justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
+            class="container flex items-center justify-end h-full px-6 mx-auto text-green-600 dark:text-green-300"
           >
             <!-- Mobile hamburger -->
             <button
-              class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple"
+              class="p-1 mr-5 -ml-1 rounded-md md:hidden focus:outline-none focus:shadow-outline-green"
               @click="toggleSideMenu"
               aria-label="Menu"
             >
@@ -604,14 +604,14 @@
               <!-- Profile menu -->
               <li class="relative">
                 <button
-                  class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none"
+                  class="align-middle rounded-full focus:shadow-outline-green focus:outline-none flex items-center"
                   @click="toggleProfileMenu"
                   @keydown.escape="closeProfileMenu"
                   aria-label="Account"
                   aria-haspopup="true"
                 >
                 @unless (! Auth::check())
-                  {{Auth::user()->namauser}}
+                  <img src="{{Auth::user()->pic}}" class="w-10 h-10 rounded-full object-cover object-top" alt="{{Auth::user()->pic}}">
                 @endunless
                 </button>
                 <template x-if="isProfileMenuOpen">
@@ -627,7 +627,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
+                        href="{{route('profile.index')}}"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -649,7 +649,7 @@
                     <li class="flex">
                       <a
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        href="#"
+                        href="{{route('setting.index')}}"
                       >
                         <svg
                           class="w-4 h-4 mr-3"
@@ -770,7 +770,7 @@
         <div class="mt-4 mb-6">
           <!-- Modal title -->
           <p
-            class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
+            class="mb-6 text-center text-2xl font-semibold text-gray-700 dark:text-gray-300"
           >
             LOGIN
           </p>
@@ -782,21 +782,28 @@
           <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
           <!-- Modal description -->
-          <form method="POST" action="{{route('login')}}" class="flex flex-col items-start">
+          <form method="POST" action="{{route('login')}}" class="flex flex-col items-start" id="loginModal">
             @csrf
             <!-- Username -->
-            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" id="namauser" name="namauser" type="text" placeholder="Username" required oninvalid="this.setCustomValidity('Silahkan masukkan username')" oninput="this.setCustomValidity('')">
+            <div class="w-full">
+              <input class="w-full p-3 border border-gray-100 rounded-md mb-3 @error('namauser') border-red-600 @enderror" id="namauser" name="namauser" type="text" placeholder="Username" required oninvalid="this.setCustomValidity('Silahkan masukkan username')" oninput="this.setCustomValidity('')">
+              
+            </div>
             <!-- Password -->
-            <input class="w-full p-3 border border-gray-100 rounded-md mb-3" id="sandi" name="sandi" type="password" placeholder="Password" required oninvalid="this.setCustomValidity('Silahkan masukkan password')" oninput="this.setCustomValidity('')">
+            <div class="w-full">
+              <input class="w-full p-3 border border-gray-100 rounded-md mb-3 @error('sandi') border-red-600 @enderror" id="sandi" name="sandi" type="password" placeholder="Password" required oninvalid="this.setCustomValidity('Silahkan masukkan password')" oninput="this.setCustomValidity('')">
+              
+            </div>
             <!-- Remember Me -->
-            <div class="block mt-4">
+            <div class="block mb-5">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
             <!-- Button Login -->
-            <button class="w-full p-3 border border-gray-100 rounded-md mb-3 hover:bg-green-400 hover:text-white uppercase transition duration-200" type="submit">Login</button>
+            <button class="w-full p-3 border border-gray-100 rounded-md mb-3 hover:bg-green-600 hover:text-white uppercase transition duration-200 font-semibold" type="submit">Login</button>
+            <a data-toggle="modal" data-target="#loginModal" class="cursor-pointer w-full p-3 border border-gray-100 rounded-md mb-3 hover:bg-green-600 hover:text-white uppercase transition duration-200 font-semibold"></a>
           </form>
         </div>
       </div>
@@ -858,7 +865,17 @@
       </div>
     </div>
 
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @if($errors->has('namauser') || $errors->has('sandi'))
+      <script>
+        $(function(){
+          $('#loginModal').modal({
+            show: true
+          });
+        });
+      </script>
+    @endif
     @yield('javascripts')
   </body>
 </html>

@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
@@ -20,7 +21,11 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $site = collect(DB::select(DB::raw("SELECT kodesite, namasite, lokasi
+        FROM SITE
+        WHERE status=1
+        ORDER BY namasite")));
+        return view('auth.register', compact('site'));
     }
 
     /**
@@ -33,20 +38,28 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        // dd($request);
+        
+        $this->validate($request,[
             'namauser' => 'required|string|max:15|unique:pma_user',
             'nama' => 'required|string|max:50',
             'golongan' => 'required|int|max:50',
-            'pic' => 'required|string',
+            'pic' => 'required|mimes:jpeg,jpg,png|max:2000',
             'kodesite' => 'required|string|max:1',
             'sandi' => ['required', Rules\Password::defaults()],
         ]);
+        
+        // Store image
+        $pic = $request->file('pic');
+        $pic->storeAs('public/images', $pic->hashName());
+
+        // dd($pic);
 
         $user =  User::create([
             'namauser' => $request->namauser,
             'nama' => $request->nama,
             'golongan' => $request->golongan,
-            'pic' => $request->pic,
+            'pic' => $pic->hashName(),
             'kodesite' => $request->kodesite,
             'sandi' => md5($request->sandi),
         ]);

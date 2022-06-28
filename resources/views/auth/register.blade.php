@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
 
             <!-- Username -->
@@ -31,10 +31,10 @@
                 <x-label for="kodesite" :value="__('Location')" />
 
                 <select name="kodesite" id="kodesite">
-                    <option value="0">Contoh site 1</option>
-                    <option value="1">Contoh site 2</option>
-                    <option value="2">Contoh site 3</option>
-                    <option value="3">Contoh site 4</option>
+                    <option value="" selected disabled>Pilih Site</option>
+                    @foreach ($site as $st)
+                        <option value="{{$st->kodesite}}">{{$st->namasite}} - {{$st->lokasi}}</option>
+                    @endforeach
                 </select>
             </div>
 

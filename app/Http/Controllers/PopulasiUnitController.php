@@ -13,6 +13,7 @@ class PopulasiUnitController extends Controller
         // Site
         $site = collect(DB::select(DB::raw("SELECT kodesite, namasite, lokasi
         FROM SITE
+        WHERE status=1
         ORDER BY namasite")));
         // dd($site);
         
@@ -44,6 +45,7 @@ class PopulasiUnitController extends Controller
         // ->when(request()->site, function(){
 
         // });        
+        
 
         // Main Data
         $data = DB::table('pmatp')
@@ -52,6 +54,10 @@ class PopulasiUnitController extends Controller
             SUM(IF((LEFT(AKTIVITAS, 1)='b'),JAM,0)) AS BD,
             SUM(IF((LEFT(AKTIVITAS, 1)='s'),JAM,0)) AS STB,
             SUM(JAM) AS MOHH"))
+            ->when((request()->bulan) == null, function($data){
+                $bulan = Carbon::now();
+                $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
+            })
             ->when(request()->bulan, function($data){
                 $bulan = Carbon::createFromFormat('Y-m', request()->bulan);
                 $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);

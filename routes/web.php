@@ -3,6 +3,8 @@
 use App\Http\Controllers\cobacobacontroller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PopulasiUnitController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\testingController;
 use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
@@ -29,7 +31,9 @@ Route::get('/home', function () {
 Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
 Route::get('/page', [PageController::class, 'index'])->name('page.index');
 Route::get('/cobacoba', [cobacobacontroller::class, 'index'])->name('cobacoba');
-Route::get('/store', [cobacobacontroller::class, 'index'])->name('cobacoba');
+Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
+Route::post('/setting/update', [SettingController::class, 'update'])->name('setting.update');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 
 // Route::prefix('plant')->group(function(){
 //     Route::group(['middleware' => 'auth'], function (){        

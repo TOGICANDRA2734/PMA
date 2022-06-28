@@ -61,7 +61,8 @@ class User extends Authenticatable
 
     public function getPicAttribute($pic){
         if ($pic !== null):
-            return asset('storage/pic/'.$this->id.'/pic_'.$pic);
+            // return asset('storage/pic/'.$this->id.'/pic_'.$pic);
+            return asset('storage/images/'.$pic);
         else :
             return 'https://ui-avatars.com/api/?name='.str_replace(' ', '+', $this->nama).'&background=4e73df&color=ffffff&size=100';
         endif;
