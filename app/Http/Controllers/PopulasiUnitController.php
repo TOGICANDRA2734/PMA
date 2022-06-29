@@ -51,9 +51,14 @@ class PopulasiUnitController extends Controller
         $data = DB::table('pmatp')
             ->select(DB::raw("NOM_UNIT,
             SUM(IF((LEFT(AKTIVITAS, 1)='0'),JAM,0)) AS WH,
+            SUM(IF((AKTIVITAS = '001'), JAM, 0)) AS WHOB,
             SUM(IF((LEFT(AKTIVITAS, 1)='b'),JAM,0)) AS BD,
             SUM(IF((LEFT(AKTIVITAS, 1)='s'),JAM,0)) AS STB,
-            SUM(JAM) AS MOHH"))
+            SUM(JAM) AS MOHH,
+            SUM(ritasi) AS RITASI,
+            SUM(bcm) AS OB,
+            SUM(distbcm)/SUM(bcm) AS DIST,
+            SUM(BCM)/ SUM(IF((AKTIVITAS = '001'), JAM, 0)) AS PTY"))
             ->when((request()->bulan) == null, function($data){
                 $bulan = Carbon::now();
                 $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
@@ -75,10 +80,10 @@ class PopulasiUnitController extends Controller
         $filter = $data->toBase();
         $filter = $filter
         ->map(function($value){
-            // $value->NOM_UNIT = substr($value->NOM_UNIT,0,2);  
+            $value->NOM_UNIT_2 = substr($value->NOM_UNIT,0,2);  
             return $value;
         })
-        ->groupBy('NOM_UNIT')->mapWithKeys(function($group, $key){
+        ->groupBy('NOM_UNIT_2')->mapWithKeys(function($group, $key){
             return [$key => (object)[
                 'WH' => $group->sum('WH'),
                 'BD' => $group->sum('BD'),
@@ -86,9 +91,8 @@ class PopulasiUnitController extends Controller
                 'MOHH' => $group->sum('MOHH'),
             ]];
         });
-        $data = $data->values()->paginate(50)->withQueryString();
-        dd($data, $filter);
-        
+        $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
+        // dd($data, $filter);
 
         return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
     }

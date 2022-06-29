@@ -4,10 +4,10 @@
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Populasi Unit
+            Produksi TP
         </h2>
 
-        <form action="{{route('plant.index')}}" method="GET" class="grid grid-cols-4 gap-4">
+        <form action="{{route('plant.index')}}" method="GET" class="grid grid-cols-5 gap-4">
             <!-- Bulan -->
             <div class="">
                 <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>
@@ -24,6 +24,7 @@
                     @endforeach
                 </select>
             </div>
+
             <div>
                 <label class="font-bold pb-1 text-sm" for="jenis">Jenis</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="jenis" id="jenis">
@@ -31,6 +32,13 @@
                     @foreach ($jenis as $jns)
                         <option value="{{$jns->kode_unit}}" {{old('jenis', request()->jenis) == $jns->kode_unit ? 'selected' : ''}}>{{$jns->kode_unit}}</option>
                     @endforeach
+                </select>
+            </div>
+            <div>
+                <label class="font-bold pb-1 text-sm" for="jenisTampilan">Tampilkan Total Per Unit</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full" name="jenisTampilan" id="jenisTampilan">
+                    <option value="">Tampilkan</option>
+                    <option value="" selected>Jangan Tampilkan</option>
                 </select>
             </div>
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
@@ -43,20 +51,26 @@
                     <thead class="bg-stone-800">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
-                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-1/3">No Unit</th>
-                            <th colspan="4" class="px-4 py-3 text-center border-none">Jam Unit</th>
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
+                            <th colspan="5" class="px-4 py-3 text-center border-r">Jam Unit</th>
+                            <th colspan="4" class="px-4 py-3 text-center border-none">Produksi</th>
                         </tr>
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
-                            <th class="px-4 py-3 border">WH</th>
-                            <th class="px-4 py-3 border">BD</th>
-                            <th class="px-4 py-3 border">STB</th>
-                            <th class="px-4 py-3 border">MOHH</th>
+                            <th class="px-4 py-3 border">WH Total</th>
+                            <th class="px-4 py-3 border">WHOB Total</th>
+                            <th class="px-4 py-3 border">BD Total</th>
+                            <th class="px-4 py-3 border">STB Total</th>
+                            <th class="px-4 py-3 border">MOHH Total</th>
+                            <th class="px-4 py-3 border">RIT</th>
+                            <th class="px-4 py-3 border">OB (BCM)</th>
+                            <th class="px-4 py-3 border">DIST</th>
+                            <th class="px-4 py-3 border">PTY</th>
                         </tr>
                     </thead>
 
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @for($i=0; $i<count($data); $i++) 
-                            <tr class="text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                            <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
                                 <td class="px-4 py-3 text-sm">
                                     {{(($data->currentPage()-1) * $data->perPage()) + ($i+1)}}
                                 </td>
@@ -67,6 +81,9 @@
                                     {{number_format($data[$i]->WH, 1)}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->WHOB, 1)}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
                                     {{number_format($data[$i]->BD, 1)}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
@@ -74,6 +91,21 @@
                                 </td>
                                 <td class="px-4 py-3 text-sm">
                                     {{number_format($data[$i]->MOHH, 0)}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->RITASI,1)}}
+                                </td>
+                                
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->OB,0)}}
+                                </td>
+                                
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->DIST,0)}}
+                                </td>
+                                
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($data[$i]->PTY,0)}}
                                 </td>
                             </tr>
                             @endfor
@@ -111,4 +143,11 @@
             @endforeach
         </div>
 </main>
+
+<script>
+    function changeColor(el){
+        $('.data-row').removeClass('bg-gray-200', 'text-gray-700')
+        $(el).addClass('bg-gray-200', 'text-white')
+    }
+</script>
 @endsection

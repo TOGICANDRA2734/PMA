@@ -24,18 +24,27 @@
 
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
-                <p class="text-sm text-white leading-5">
-                    {!! __('Showing') !!}
-                    @if ($paginator->firstItem())
+                <p class="text-sm text-white leading-5 inline">
+                    <span class="inline text-xs">
+                        <span class="text-xs">Menampilkan {{$paginator->firstItem()}}</span>
+                        dari
+                        <form method="GET" action="{{route('plant.index')}}" class="text-xs inline">
+                            <input type="text" name="paginate" id="paginate" class="text-black w-7 text-xs" value="{{$paginator->lastItem()}}">
+                        </form>
+                    </span>
+
+                    <!-- @if ($paginator->firstItem())
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
                         {!! __('to') !!}
-                        <span class="font-medium">{{ $paginator->lastItem() }}</span>
+                        <span class="font-medium">
+                            <input type="text" class="text-black w-7" value="{{$paginator->lastItem()}}">
+                        </span>
                     @else
                         {{ $paginator->count() }}
-                    @endif
-                    {!! __('of') !!}
+                    @endif -->
+                    {!! __('dari') !!}
                     <span class="font-medium">{{ $paginator->total() }}</span>
-                    {!! __('results') !!}
+                    {!! __('hasil') !!}
                 </p>
             </div>
 
