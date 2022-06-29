@@ -37,8 +37,8 @@
             <div>
                 <label class="font-bold pb-1 text-sm" for="jenisTampilan">Tampilkan Total Per Unit</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="jenisTampilan" id="jenisTampilan">
-                    <option value="">Tampilkan</option>
-                    <option value="" selected>Jangan Tampilkan</option>
+                    <option value="0" selected>Jangan Tampilkan</option>
+                    <option value="1">Tampilkan</option>
                 </select>
             </div>
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
@@ -69,78 +69,149 @@
                     </thead>
 
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        @for($i=0; $i<count($data); $i++) 
+                        @foreach($data as $key => $dt) 
                             <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
                                 <td class="px-4 py-3 text-sm">
-                                    {{(($data->currentPage()-1) * $data->perPage()) + ($i+1)}}
+                                    @if (request()->jenisTampilan == "0")
+                                        {{(($data->currentPage()-1) * $data->perPage()) + ($key+1)}}
+                                    @else
+                                        {{$key+1}}
+                                    @endif
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{$data[$i]->NOM_UNIT}}
+                                    {{$dt->NOM_UNIT}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->WH, 1)}}
+                                    {{number_format($dt->WH, 1)}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->WHOB, 1)}}
+                                    {{number_format($dt->WHOB, 1)}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->BD, 1)}}
+                                    {{number_format($dt->BD, 1)}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->STB, 1)}}
+                                    {{number_format($dt->STB, 1)}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->MOHH, 0)}}
+                                    {{number_format($dt->MOHH, 0)}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->RITASI,1)}}
-                                </td>
-                                
-                                <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->OB,0)}}
-                                </td>
-                                
-                                <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->DIST,0)}}
+                                    {{number_format($dt->RITASI,1)}}
                                 </td>
                                 
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($data[$i]->PTY,0)}}
+                                    {{number_format($dt->OB,0)}}
+                                </td>
+                                
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($dt->DIST,0)}}
+                                </td>
+                                
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($dt->PTY,0)}}
                                 </td>
                             </tr>
-                            @endfor
-                    </tbody>
+                            @if(request()->jenisTampilan != "0")
+                                @if(isset(($data[$key + 1])))
+                                    @php 
+                                        $nextRow = $data[$key + 1]
+                                    @endphp
 
+                                    @if(substr($dt->NOM_UNIT,0,2) != substr($nextRow->NOM_UNIT,0,2))
+                                        <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                                            <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                            @php
+                                                $hasilFilter = $filter->filter(function($item, $key) use ($dt){
+                                                    return in_array($key, [substr($dt->NOM_UNIT,0,2)]);
+                                                });
+                                            @endphp
+                                            @foreach($hasilFilter as $ft)
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->WH, 1)}}
+                                                </td>
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->WHOB, 1)}}
+                                                </td>
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->BD, 1)}}
+                                                </td>
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->STB, 1)}}
+                                                </td>
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->MOHH, 0)}}
+                                                </td>
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->RITASI,1)}}
+                                                </td>
+                                                
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->OB,0)}}
+                                                </td>
+                                                
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->DIST,0)}}
+                                                </td>
+                                                
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->PTY,0)}}
+                                                </td>
+                                            @endforeach
+                                        </tr>
+                                    @endif
+                                @elseif($key == count($data)-1)
+                                    <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                                        <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                        @php
+                                            $hasilFilter = $filter->filter(function($item, $key) use ($dt){
+                                                return in_array($key, [substr($dt->NOM_UNIT,0,2)]);
+                                            });
+                                        @endphp
+                                        @foreach($hasilFilter as $ft)
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->WH, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->WHOB, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->BD, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->STB, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->MOHH, 0)}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->RITASI,1)}}
+                                            </td>
+                                            
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->OB,0)}}
+                                            </td>
+                                            
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->DIST,0)}}
+                                            </td>
+                                            
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->PTY,0)}}
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                @endif
+                            @endif
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
-            <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">
-                {{$data->links()}}
-            </div>
-        </div>
-
-        <!-- Hasil -->
-        <h4
-              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
-            >
-            Hasil Per Unit
-        </h4>
-        <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
-            @foreach($filter as $filter_no => $value)
-                <div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400" >
-                            {{$filter_no}}
-                        </p>
-                        <div class="flex">
-                            @foreach ($value as $key => $values)
-                                <p class="text-lg font-semibold text-gray-700 dark:text-gray-200" >
-                                    {{$key}} - {{number_format($values,0) }}
-                                </p>
-                            @endforeach
-                        </div>
-                    </div>
+            @if(request()->jenisTampilan == 0)
+                <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">
+                    {{$data->links()}}
                 </div>
-            @endforeach
+            @endif
         </div>
 </main>
 

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\ArrayKey;
 
 class PopulasiUnitController extends Controller
 {
@@ -77,23 +78,36 @@ class PopulasiUnitController extends Controller
             ->groupBy('NOM_UNIT')
             ->get();
         
-        $filter = $data->toBase();
-        $filter = $filter
+        $filter = $data->toBase()
         ->map(function($value){
             $value->NOM_UNIT_2 = substr($value->NOM_UNIT,0,2);  
             return $value;
         })
-        ->groupBy('NOM_UNIT_2')->mapWithKeys(function($group, $key){
+        ->groupBy('NOM_UNIT_2')
+        ->mapWithKeys(function($group, $key){
             return [$key => (object)[
                 'WH' => $group->sum('WH'),
+                'WHOB' => $group->sum('WHOB'),
                 'BD' => $group->sum('BD'),
                 'STB' => $group->sum('STB'),
                 'MOHH' => $group->sum('MOHH'),
+                'RITASI' => $group->sum('RITASI'),
+                'OB' => $group->sum('OB'),
+                'DIST' => $group->sum('DIST'),
+                'PTY' => $group->sum('PTY'),
             ]];
         });
-        $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
-        // dd($data, $filter);
-
-        return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
+        // dd(request()->jenisTampilan);
+        if(request()->jenisTampilan == "0"){
+            $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
+        
+            return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
+        }
+        else{
+            $data = $data->values();
+        
+            return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
+        }
+        
     }
 }
