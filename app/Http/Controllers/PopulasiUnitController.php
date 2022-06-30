@@ -98,13 +98,15 @@ class PopulasiUnitController extends Controller
             ]];
         });
         // dd(request()->jenisTampilan);
-        if(request()->jenisTampilan == "0"){
-            $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
         
+        if(request()->jenisTampilan == "0" || is_null(request()->jenisTampilan)){
+            $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
+
             return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
         }
         else{
             $data = $data->values();
+            // dd();
         
             return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
         }

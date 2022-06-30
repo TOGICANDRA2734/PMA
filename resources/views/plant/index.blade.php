@@ -112,7 +112,7 @@
                                     {{number_format($dt->PTY,0)}}
                                 </td>
                             </tr>
-                            @if(request()->jenisTampilan != "0")
+                            @if(request()->jenisTampilan != 0)
                                 @if(isset(($data[$key + 1])))
                                     @php 
                                         $nextRow = $data[$key + 1]
