@@ -10,21 +10,22 @@ class DistribusiJamPMA2BController extends Controller
 {
     public function index()
     {
-        $data = DB::table('pmaa2b')->select(DB::raw("COALESCE(nom_unit, '-- SUM --') nom_unit,
+        $data = DB::table('pmaa2b')->select(DB::raw("
+        COALESCE(nom_unit, '-- SUM --') nom_unit,
         LEFT(nom_unit,4) K_kode,
+        SUM(IF(kode='008',jam,0)) lr,                
+        SUM(IF(kode='009',jam,0)) ll,                
+        SUM(IF(kode='010',jam,0)) ls,                
+        SUM(IF(kode='011',jam,0)) lb,                
+        SUM(IF(kode='012',jam,0)) lm,                
+        SUM(IF(kode='013',jam,0)) coal,        
         SUM(IF(kode='003',jam,0)) rip,                
         SUM(IF(kode='004',jam,0)) doz,                
         SUM(IF(kode='005',jam,0)) ripdoz,                
         SUM(IF(kode='006',jam,0)) spr,                
         SUM(IF(kode='022',jam,0)) drill,                
         SUM(IF((kode='017') OR
-                  (kode='018'),jam,0)) maint,
-        SUM(IF(kode='008',jam,0)) lr,                
-        SUM(IF(kode='009',jam,0)) ll,                
-        SUM(IF(kode='010',jam,0)) ls,                
-        SUM(IF(kode='011',jam,0)) lb,                
-        SUM(IF(kode='012',jam,0)) lm,                
-        SUM(IF(kode='013',jam,0)) coal,                
+                  (kode='018'),jam,0)) maint,        
         SUM(IF(kode='014',jam,0)) clean,                
         SUM(IF(kode='001',jam,0)) land,                
         SUM(IF(kode='020',jam,0)) gen,                
@@ -52,9 +53,32 @@ class DistribusiJamPMA2BController extends Controller
         SUM(IF(kode='s16',jam,0)) s16,
         SUM(IF(kode='s17',jam,0)) s17,
         SUM(IF(LEFT(kode,1)='S',jam,0)) total_stb"))
+        ->when((request()->bulan) == null, function($data){
+            $bulan = Carbon::now();
+            $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
+        })
+        ->when(request()->site, function($data){
+            $data = $data->where('kodesite', '=', request()->site);
+        })
         ->groupBy(DB::raw("k_kode,nom_unit WITH ROLLUP"))
-        ->whereBetween('TGL', ['2022-06-01', '2022-06-31'])
         ->get();
+
+        $site = collect(DB::select(DB::raw("SELECT kodesite, namasite, lokasi
+        FROM SITE
+        WHERE status=1
+        ORDER BY namasite")));
+
+        if(request()->jenisTampilan == "0" || is_null(request()->jenisTampilan)){
+            $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
+
+            return view('pma2b.distribusi.index', compact('data', 'site'));
+        }
+        else{
+            $data = $data->values();
+            // dd();
+
+            return view('pma2b.distribusi.index', compact('data', 'site'));
+        }
 
         return view('pma2b.distribusi.index', compact('data'));
     }
