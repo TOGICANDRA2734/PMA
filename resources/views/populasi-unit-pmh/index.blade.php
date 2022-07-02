@@ -202,7 +202,7 @@
                                         @endforeach
                                     </tr>
                                 @endif
-                            @endif
+                            @endif                    
                         @endforeach
                     </tbody>
                 </table>
