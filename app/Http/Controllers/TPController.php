@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\DB;
 
 class TPController extends Controller
@@ -59,7 +60,6 @@ class TPController extends Controller
         FROM SITE
         WHERE status=1
         ORDER BY namasite")));
-
 
         $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
         return view('distribusi-jam-tp.index', compact('data', 'site'));

@@ -28,7 +28,10 @@
                     <span class="inline text-xs">
                         <span class="text-xs">Menampilkan {{$paginator->firstItem()}}</span>
                         dari
-                        <form method="GET" action="{{route('populasi-unit-pmh.index')}}" class="text-xs inline">
+                        <form method="GET" action="{{route(request()->route()->getName())}}" class="text-xs inline">
+                            @foreach (request()->all() as $key => $values) 
+                                <input type="hidden" name="{{$key}}" id="{{$key}}" class="text-black w-7 text-xs" value="{{$values}}">
+                            @endforeach
                             <input type="text" name="paginate" id="paginate" class="text-black w-7 text-xs" value="{{$paginator->lastItem()}}">
                         </form>
                     </span>
