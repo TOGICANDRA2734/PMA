@@ -8,7 +8,7 @@
         </h2>
 
         <!-- Filter -->
-        <form action="{{route('distribusi-jam-tp.index')}}" method="GET" class="grid grid-cols-3 gap-4">
+        <form action="{{route('distribusi-jam-tp.index')}}" method="GET" class="grid grid-cols-4 gap-4">
             <!-- Bulan -->
             <div class="">
                 <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>
@@ -23,6 +23,13 @@
                     @foreach ($site as $st)
                         <option value="{{$st->kodesite}}" {{old('site', request()->site) == $st->kodesite ? 'selected' : ''}}>{{$st->namasite}} - {{$st->lokasi}}</option>
                     @endforeach
+                </select>
+            </div>
+            <div>
+                <label class="font-bold pb-1 text-sm" for="jenisTampilan">Tampilkan Total Per Unit</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full" name="jenisTampilan" id="jenisTampilan">
+                    <option value="0" selected>Jangan Tampilkan</option>
+                    <option value="1">Tampilkan</option>
                 </select>
             </div>
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
@@ -63,7 +70,7 @@
                             <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
                                 <td class="px-4 py-3 border">{{$key+1}}</td>
                                 <td class="px-4 py-3 border">
-                                    {{$values->nom_unit}}
+                                    {{$values->NOM_UNIT}}
                                 </td>
                                 <td class="px-4 py-3 border">
                                     {{number_format($values->OB, 1)}}
@@ -156,13 +163,234 @@
                                     {{number_format($values->UT, 1)}}
                                 </td>
                             </tr>
+                            @if(request()->jenisTampilan != 0)
+                                @if(isset(($data[$key + 1])))
+                                    @php 
+                                        $nextRow = $data[$key + 1]
+                                    @endphp
+
+                                    @if(substr($values->NOM_UNIT,0,2) != substr($nextRow->NOM_UNIT,0,2))
+                                        <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                                            <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                            @php
+                                                $hasilFilter = $filter->filter(function($item, $key) use ($values){
+                                                    return in_array($key, [substr($values->NOM_UNIT,0,2)]);
+                                                });
+                                            @endphp
+                                            @foreach($hasilFilter as $ft)
+                                            <td colspan="2" class="px-4 py-3 border">Sub Total</td>
+                                            <td class="px-4 py-3 border">
+                                                {{$values->NOM_UNIT}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->OB, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->ROOM, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->POR, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->TRAV, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->GEN, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->RENT, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->TOTAL, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->BD, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S00, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S01, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S02, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S03, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S04, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S05, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S06, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S07, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S08, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S09, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S10, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S11, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S12, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S13, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S14, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S15, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S16, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S17, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->STB, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->MOHH, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->MA, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->UT, 1)}}
+                                            </td>
+                                            @endforeach
+                                        </tr>
+                                    @endif
+                                @elseif($key == count($data)-1)
+                                    <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                                        <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                        @php
+                                            $hasilFilter = $filter->filter(function($item, $key) use ($values){
+                                                return in_array($key, [substr($values->NOM_UNIT,0,2)]);
+                                            });
+                                        @endphp
+                                        @foreach($hasilFilter as $ft)
+                                            <td class="px-4 py-3 border">Sub Total</td>
+                                            <td class="px-4 py-3 border">
+                                                {{$values->NOM_UNIT}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->OB, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->ROOM, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->POR, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->TRAV, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->GEN, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->RENT, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->TOTAL, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->BD, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S00, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S01, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S02, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S03, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S04, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S05, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S06, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S07, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S08, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S09, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S10, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S11, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S12, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S13, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S14, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S15, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S16, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->S17, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->STB, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->MOHH, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->MA, 1)}}
+                                            </td>
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($values->UT, 1)}}
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                @endif
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">
-                {{$data->links()}}
-            </div>
+            @if(request()->jenisTampilan == 0)
+                <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">
+                    {{$data->links()}}
+                </div>
+            @endif
         </div>
 </main>
 
