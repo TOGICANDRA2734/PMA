@@ -57,6 +57,10 @@ class DistribusiJamPMA2BController extends Controller
             $bulan = Carbon::now();
             $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
         })
+        ->when(request()->bulan, function($data){
+            $bulan = Carbon::createFromFormat('Y-m', request()->bulan);
+            $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
+        })
         ->when(request()->site, function($data){
             $data = $data->where('kodesite', '=', request()->site);
         })
@@ -79,7 +83,5 @@ class DistribusiJamPMA2BController extends Controller
 
             return view('pma2b.distribusi.index', compact('data', 'site'));
         }
-
-        return view('pma2b.distribusi.index', compact('data'));
     }
 }

@@ -24,10 +24,10 @@
                 </select>
             </div>
             <div>
-                <label class="font-bold pb-1 text-sm" for="jenisTampilan">Tampilkan Total Per Unit</label>
+                <label class="font-bold pb-1 text-sm" for="jenisTampilan">Tampilan</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="jenisTampilan" id="jenisTampilan">
-                    <option value="0" selected>Jangan Tampilkan</option>
-                    <option value="1">Tampilkan</option>
+                    <option value="0" selected>Tampilkan Per Halaman</option>
+                    <option value="1">Tampilkan Semua Halaman</option>
                 </select>
             </div>
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
