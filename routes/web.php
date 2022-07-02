@@ -28,11 +28,6 @@ Route::get('/', function () {
 Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
 Route::get('/page', [PageController::class, 'index'])->name('page.index');
 Route::get('/TPController', [TPController::class, 'index'])->name('tp.index');
-Route::get('/TPController', [TPController::class, 'index'])->name('tp.index');
-Route::get('/TPController', [TPController::class, 'index'])->name('tp.index');
-Route::get('/TPController', [TPController::class, 'index'])->name('tp.index');
-Route::get('/TPController', [TPController::class, 'index'])->name('tp.index');
-Route::get('/TPController', [TPController::class, 'index'])->name('tp.index');
 // File Permintaan pak Fantri untuk DB RAW
 Route::get('/cobacoba', [cobacobacontroller::class, 'index'])->name('cobacoba');
 Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
