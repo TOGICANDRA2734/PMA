@@ -8,7 +8,7 @@
         </h2>
 
         <!-- Filter -->
-        <form action="{{route('tp.index')}}" method="GET" class="grid grid-cols-3 gap-4">
+        <form action="{{route('distribusi-jam-tp.index')}}" method="GET" class="grid grid-cols-3 gap-4">
             <!-- Bulan -->
             <div class="">
                 <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>
@@ -30,7 +30,7 @@
 
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
-            <div class="w-full overflow-x-auto">
+            <div class="w-full overflow-x-auto" style="max-height: 36rem;">
                 <table class="w-full whitespace-no-wrap border table-auto">
                     <thead class="bg-stone-800">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">

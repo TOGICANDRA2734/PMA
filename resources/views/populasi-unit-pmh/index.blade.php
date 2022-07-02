@@ -7,7 +7,7 @@
             Produksi TP
         </h2>
 
-        <form action="{{route('plant.index')}}" method="GET" class="grid grid-cols-5 gap-4">
+        <form action="{{route('populasi-unit-pmh.index')}}" method="GET" class="grid grid-cols-5 gap-4">
             <!-- Bulan -->
             <div class="">
                 <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>

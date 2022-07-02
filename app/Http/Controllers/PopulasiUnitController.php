@@ -102,13 +102,13 @@ class PopulasiUnitController extends Controller
         if(request()->jenisTampilan == "0" || is_null(request()->jenisTampilan)){
             $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
 
-            return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
+            return view('populasi-unit-pmh.index', compact('site', 'jenis', 'data', 'filter'));
         }
         else{
             $data = $data->values();
             // dd();
         
-            return view('plant.index', compact('site', 'jenis', 'data', 'filter'));
+            return view('populasi-unit-pmh.index', compact('site', 'jenis', 'data', 'filter'));
         }
         
     }

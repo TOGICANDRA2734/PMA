@@ -28,7 +28,7 @@
                     <span class="inline text-xs">
                         <span class="text-xs">Menampilkan {{$paginator->firstItem()}}</span>
                         dari
-                        <form method="GET" action="{{route('plant.index')}}" class="text-xs inline">
+                        <form method="GET" action="{{route('populasi-unit-pmh.index')}}" class="text-xs inline">
                             <input type="text" name="paginate" id="paginate" class="text-black w-7 text-xs" value="{{$paginator->lastItem()}}">
                         </form>
                     </span>

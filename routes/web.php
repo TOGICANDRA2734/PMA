@@ -25,9 +25,9 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
+Route::get('/populasi-unit-pmh', [PopulasiUnitController::class, 'index'])->name('populasi-unit-pmh.index');
 Route::get('/page', [PageController::class, 'index'])->name('page.index');
-Route::get('/TPController', [TPController::class, 'index'])->name('tp.index');
+Route::get('/distribusi-jam-tp', [TPController::class, 'index'])->name('distribusi-jam-tp.index');
 // File Permintaan pak Fantri untuk DB RAW
 Route::get('/cobacoba', [cobacobacontroller::class, 'index'])->name('cobacoba');
 Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');

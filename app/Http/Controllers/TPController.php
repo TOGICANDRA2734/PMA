@@ -62,6 +62,6 @@ class TPController extends Controller
 
 
         $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
-        return view('tp.index', compact('data', 'site'));
+        return view('distribusi-jam-tp.index', compact('data', 'site'));
     }
 }
