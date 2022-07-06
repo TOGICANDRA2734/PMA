@@ -128,15 +128,42 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="pages/create-account.html">
-                      Laporan
-                    </a>
-                  </li>
-                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <a href="{{route('populasi-unit-pmh.index')}}">Populasi Unit</a>
-                  </li>
-                  <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                    <a href="{{route('distribusi-jam-tp.index')}}">Distribusi Jam Tp</a>
+                    <!-- Laporan Sub Button -->
+                    <button
+                      class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                      @click="togglePagesMenu1"
+                      aria-haspopup="true"
+                    >
+                      <span class="inline-flex items-center">
+                        <span>Production</span>
+                      </span>
+                      <svg
+                        class="w-4 h-4"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </button>
+
+
+                    <ul>
+                      <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a href="{{route('populasi-unit-pmh.index')}}">Populasi Unit</a>
+                      </li>
+                      <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a href="{{route('distribusi-jam-tp.index')}}">Distribusi Jam Tp</a>
+                      </li>
+                      
+                      <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a href="{{route('pma2b.distribusi.index')}}">Distribusi Jam PMA2B</a>
+                      </li>
+                    </ul>  
                   </li>
                 </ul>
               </template>
@@ -202,9 +229,6 @@
                     </li>
                     <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                       <a href="{{route('pma2b.populasi.index')}}">Populasi Unit PMA2B</a>
-                    </li>
-                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                      <a href="{{route('pma2b.distribusi.index')}}">Distribusi Jam PMA2B</a>
                     </li>
                   </ul>
                 </template>

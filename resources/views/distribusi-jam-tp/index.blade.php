@@ -32,7 +32,77 @@
                     <option value="1">Tampilkan</option>
                 </select>
             </div>
-            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
+            <div class="flex w-full relative">
+                <button class="w-4/6 p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Cari</button>
+
+                <a
+                    class="w-2/6 align-middle flex justify-center items-center rounded-md focus:shadow-outline-purple focus:outline-none bg-stone-800 text-white hover:bg-gray-900 duration-150 ease-in-out"
+                    @click="toggleConvertMenu"
+                    @keydown.escape="closeConvertMenu"
+                    aria-label="Account"
+                    aria-haspopup="true"
+                >
+                    <svg class="h-6 w-6" viewBox="-2.5 -5 75 60" preserveAspectRatio="none">
+                        <path d="M0,0 l35,50 l35,-50" fill="none" stroke="white" stroke-linecap="round" stroke-width="5" />
+                    </svg>
+                </a>
+                <template x-if="isConvertMenuOpen">
+                    <ul
+                    x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100"
+                    x-transition:leave-end="opacity-0"
+                    @click.away="closeConvertMenu"
+                    @keydown.escape="closeConvertMenu"
+                    class="absolute right-0 top-16 w-56 p-2 mt-2 space-y-2 text-gray-600 bg-white border border-gray-100 rounded-md shadow-md dark:border-gray-700 dark:text-gray-300 dark:bg-gray-700"
+                    aria-label="submenu"
+                    >
+                        <li class="flex">
+                            <a
+                            class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                            href="#"
+                            >
+                            <svg
+                                class="w-4 h-4 mr-3"
+                                aria-hidden="true"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                ></path>
+                            </svg>
+                            <span>PDF</span>
+                            </a>
+                        </li>
+                        <li class="flex">
+                            <a
+                            class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+                            href="#"
+                            >
+                            <svg
+                                class="w-4 h-4 mr-3"
+                                aria-hidden="true"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                ></path>
+                            </svg>
+                            <span>Excel</span>
+                            </a>
+                        </li>
+                    </ul>
+                </template>
+            </div>            
         </form>
 
         <!-- Content Table -->

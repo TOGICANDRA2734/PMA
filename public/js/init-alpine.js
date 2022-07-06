@@ -29,12 +29,12 @@ function data() {
     closeSideMenu() {
       this.isSideMenuOpen = false
     },
-    isNotificationsMenuOpen: false,
-    toggleNotificationsMenu() {
-      this.isNotificationsMenuOpen = !this.isNotificationsMenuOpen
+    isConvertMenuOpen: false,
+    toggleConvertMenu() {
+      this.isConvertMenuOpen = !this.isConvertMenuOpen
     },
-    closeNotificationsMenu() {
-      this.isNotificationsMenuOpen = false
+    closeConvertMenu() {
+      this.isConvertMenuOpen = false
     },
     isProfileMenuOpen: false,
     toggleProfileMenu() {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\cobacobacontroller;
 use App\Http\Controllers\DistribusiJamPMA2BController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PDFViewController;
 use App\Http\Controllers\PopulasiUnitController;
 use App\Http\Controllers\PopulasiUnitPMA2BController;
 use App\Http\Controllers\ProfileController;
@@ -29,6 +30,7 @@ Route::get('/', function () {
 
 Route::get('/populasi-unit-pmh', [PopulasiUnitController::class, 'index'])->name('populasi-unit-pmh.index');
 Route::get('/distribusi-jam-tp', [TPController::class, 'index'])->name('distribusi-jam-tp.index');
+Route::get('/distribusi-jam-tp/pdf', [TPController::class, 'downloadPDF'])->name('distribusi-jam-tp.pdf');
 Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
 Route::post('/setting/update', [SettingController::class, 'update'])->name('setting.update');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
@@ -47,5 +49,6 @@ Route::get('/page', [PageController::class, 'index'])->name('page.index');
 // });
 
 Route::get('/coba', [testingController::class, 'index']);
+Route::get('generate-pdf-from-view', [PDFViewController::class, 'index']);
 
 require __DIR__.'/auth.php';
