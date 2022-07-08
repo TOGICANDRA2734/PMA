@@ -143,94 +143,94 @@
                                     {{$values->NOM_UNIT}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->OB, 1)}}
+                                    {{number_format($values->OB, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->ROOM, 1)}}
+                                    {{number_format($values->ROOM, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->POR, 1)}}
+                                    {{number_format($values->POR, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->TRAV, 1)}}
+                                    {{number_format($values->TRAV, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->GEN, 1)}}
+                                    {{number_format($values->GEN, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->RENT, 1)}}
+                                    {{number_format($values->RENT, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->TOTAL, 1)}}
+                                    {{number_format($values->TOTAL, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->BD, 1)}}
+                                    {{number_format($values->BD, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S00, 1)}}
+                                    {{number_format($values->S00, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S01, 1)}}
+                                    {{number_format($values->S01, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S02, 1)}}
+                                    {{number_format($values->S02, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S03, 1)}}
+                                    {{number_format($values->S03, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S04, 1)}}
+                                    {{number_format($values->S04, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S05, 1)}}
+                                    {{number_format($values->S05, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S06, 1)}}
+                                    {{number_format($values->S06, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S07, 1)}}
+                                    {{number_format($values->S07, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S08, 1)}}
+                                    {{number_format($values->S08, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S09, 1)}}
+                                    {{number_format($values->S09, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S10, 1)}}
+                                    {{number_format($values->S10, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S11, 1)}}
+                                    {{number_format($values->S11, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S12, 1)}}
+                                    {{number_format($values->S12, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S13, 1)}}
+                                    {{number_format($values->S13, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S14, 1)}}
+                                    {{number_format($values->S14, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S15, 1)}}
+                                    {{number_format($values->S15, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S16, 1)}}
+                                    {{number_format($values->S16, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->S17, 1)}}
+                                    {{number_format($values->S17, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->STB, 1)}}
+                                    {{number_format($values->STB, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->MOHH, 1)}}
+                                    {{number_format($values->MOHH, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->MA, 1)}}
+                                    {{number_format($values->MA, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 border">
-                                    {{number_format($values->UT, 1)}}
+                                    {{number_format($values->UT, 1, ",", ".")}}
                                 </td>
                             </tr>
                             @if(request()->jenisTampilan != 0)
@@ -253,94 +253,94 @@
                                                 {{$values->NOM_UNIT}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->OB, 1)}}
+                                                {{number_format($values->OB, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->ROOM, 1)}}
+                                                {{number_format($values->ROOM, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->POR, 1)}}
+                                                {{number_format($values->POR, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->TRAV, 1)}}
+                                                {{number_format($values->TRAV, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->GEN, 1)}}
+                                                {{number_format($values->GEN, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->RENT, 1)}}
+                                                {{number_format($values->RENT, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->TOTAL, 1)}}
+                                                {{number_format($values->TOTAL, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->BD, 1)}}
+                                                {{number_format($values->BD, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S00, 1)}}
+                                                {{number_format($values->S00, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S01, 1)}}
+                                                {{number_format($values->S01, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S02, 1)}}
+                                                {{number_format($values->S02, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S03, 1)}}
+                                                {{number_format($values->S03, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S04, 1)}}
+                                                {{number_format($values->S04, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S05, 1)}}
+                                                {{number_format($values->S05, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S06, 1)}}
+                                                {{number_format($values->S06, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S07, 1)}}
+                                                {{number_format($values->S07, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S08, 1)}}
+                                                {{number_format($values->S08, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S09, 1)}}
+                                                {{number_format($values->S09, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S10, 1)}}
+                                                {{number_format($values->S10, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S11, 1)}}
+                                                {{number_format($values->S11, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S12, 1)}}
+                                                {{number_format($values->S12, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S13, 1)}}
+                                                {{number_format($values->S13, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S14, 1)}}
+                                                {{number_format($values->S14, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S15, 1)}}
+                                                {{number_format($values->S15, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S16, 1)}}
+                                                {{number_format($values->S16, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S17, 1)}}
+                                                {{number_format($values->S17, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->STB, 1)}}
+                                                {{number_format($values->STB, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->MOHH, 1)}}
+                                                {{number_format($values->MOHH, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->MA, 1)}}
+                                                {{number_format($values->MA, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->UT, 1)}}
+                                                {{number_format($values->UT, 1, ",", ".")}}
                                             </td>
                                             @endforeach
                                         </tr>
@@ -359,94 +359,94 @@
                                                 {{$values->NOM_UNIT}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->OB, 1)}}
+                                                {{number_format($values->OB, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->ROOM, 1)}}
+                                                {{number_format($values->ROOM, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->POR, 1)}}
+                                                {{number_format($values->POR, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->TRAV, 1)}}
+                                                {{number_format($values->TRAV, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->GEN, 1)}}
+                                                {{number_format($values->GEN, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->RENT, 1)}}
+                                                {{number_format($values->RENT, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->TOTAL, 1)}}
+                                                {{number_format($values->TOTAL, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->BD, 1)}}
+                                                {{number_format($values->BD, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S00, 1)}}
+                                                {{number_format($values->S00, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S01, 1)}}
+                                                {{number_format($values->S01, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S02, 1)}}
+                                                {{number_format($values->S02, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S03, 1)}}
+                                                {{number_format($values->S03, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S04, 1)}}
+                                                {{number_format($values->S04, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S05, 1)}}
+                                                {{number_format($values->S05, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S06, 1)}}
+                                                {{number_format($values->S06, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S07, 1)}}
+                                                {{number_format($values->S07, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S08, 1)}}
+                                                {{number_format($values->S08, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S09, 1)}}
+                                                {{number_format($values->S09, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S10, 1)}}
+                                                {{number_format($values->S10, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S11, 1)}}
+                                                {{number_format($values->S11, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S12, 1)}}
+                                                {{number_format($values->S12, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S13, 1)}}
+                                                {{number_format($values->S13, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S14, 1)}}
+                                                {{number_format($values->S14, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S15, 1)}}
+                                                {{number_format($values->S15, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S16, 1)}}
+                                                {{number_format($values->S16, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->S17, 1)}}
+                                                {{number_format($values->S17, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->STB, 1)}}
+                                                {{number_format($values->STB, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->MOHH, 1)}}
+                                                {{number_format($values->MOHH, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->MA, 1)}}
+                                                {{number_format($values->MA, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 border">
-                                                {{number_format($values->UT, 1)}}
+                                                {{number_format($values->UT, 1, ",", ".")}}
                                             </td>
                                         @endforeach
                                     </tr>

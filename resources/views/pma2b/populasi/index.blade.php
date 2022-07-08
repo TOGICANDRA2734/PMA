@@ -4,7 +4,7 @@
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Populasi Unit PMA2B
+            Produksi A2B
         </h2>
 
         <form action="{{route(request()->route()->getName())}}" method="GET" class="grid grid-cols-4 gap-4">
@@ -41,13 +41,19 @@
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
-                            <th colspan="4" class="px-4 py-3 text-center border-r">Jam Unit</th>
+                            <th colspan="5" class="px-4 py-3 text-center border-r">Jam Unit</th>
+                            <th colspan="4" class="px-4 py-3 text-center border-none">Produksi</th>
                         </tr>
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
-                            <th class="px-4 py-3 border">WH</th>
-                            <th class="px-4 py-3 border">BD</th>
-                            <th class="px-4 py-3 border">STB</th>
-                            <th class="px-4 py-3 border">MOHH</th>
+                            <th class="px-4 py-3 border">WH Total</th>
+                            <th class="px-4 py-3 border">WHOB Total</th>
+                            <th class="px-4 py-3 border">BD Total</th>
+                            <th class="px-4 py-3 border">STB Total</th>
+                            <th class="px-4 py-3 border">MOHH Total</th>
+                            <th class="px-4 py-3 border">RIT</th>
+                            <th class="px-4 py-3 border">OB (BCM)</th>
+                            <th class="px-4 py-3 border">DIST</th>
+                            <th class="px-4 py-3 border">PTY</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">

@@ -4,7 +4,7 @@
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Populasi Unit PMH
+            Produksi TP
         </h2>
 
         <form action="{{route('populasi-unit-pmh.index')}}" method="GET" class="grid grid-cols-5 gap-4">
@@ -82,34 +82,34 @@
                                     {{$dt->NOM_UNIT}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->WH, 1)}}
+                                    {{number_format($dt->WH, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->WHOB, 1)}}
+                                    {{number_format($dt->WHOB, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->BD, 1)}}
+                                    {{number_format($dt->BD, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->STB, 1)}}
+                                    {{number_format($dt->STB, 1, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->MOHH, 0)}}
+                                    {{number_format($dt->MOHH, 0, ",", ".")}}
                                 </td>
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->RITASI,1)}}
-                                </td>
-                                
-                                <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->OB,0)}}
+                                    {{number_format($dt->RITASI,1, ",", ".")}}
                                 </td>
                                 
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->DIST,0)}}
+                                    {{number_format($dt->OB,0, ",", ".")}}
                                 </td>
                                 
                                 <td class="px-4 py-3 text-sm">
-                                    {{number_format($dt->PTY,0)}}
+                                    {{number_format($dt->DIST,0, ",", ".")}}
+                                </td>
+                                
+                                <td class="px-4 py-3 text-sm">
+                                    {{number_format($dt->PTY,0, ",", ".")}}
                                 </td>
                             </tr>
                             @if(request()->jenisTampilan != 0)
@@ -128,34 +128,34 @@
                                             @endphp
                                             @foreach($hasilFilter as $ft)
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->WH, 1)}}
+                                                    {{number_format($ft->WH, 1, ",", ".")}}
                                                 </td>
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->WHOB, 1)}}
+                                                    {{number_format($ft->WHOB, 1, ",", ".")}}
                                                 </td>
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->BD, 1)}}
+                                                    {{number_format($ft->BD, 1, ",", ".")}}
                                                 </td>
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->STB, 1)}}
+                                                    {{number_format($ft->STB, 1, ",", ".")}}
                                                 </td>
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->MOHH, 0)}}
+                                                    {{number_format($ft->MOHH, 0, ",", ".")}}
                                                 </td>
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->RITASI,1)}}
-                                                </td>
-                                                
-                                                <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->OB,0)}}
+                                                    {{number_format($ft->RITASI,1, ",", ".")}}
                                                 </td>
                                                 
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->DIST,0)}}
+                                                    {{number_format($ft->OB,0, ",", ".")}}
                                                 </td>
                                                 
                                                 <td class="px-4 py-3 text-sm">
-                                                    {{number_format($ft->PTY,0)}}
+                                                    {{number_format($ft->DIST,0, ",", ".")}}
+                                                </td>
+                                                
+                                                <td class="px-4 py-3 text-sm">
+                                                    {{number_format($ft->PTY,0, ",", ".")}}
                                                 </td>
                                             @endforeach
                                         </tr>
@@ -170,34 +170,34 @@
                                         @endphp
                                         @foreach($hasilFilter as $ft)
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->WH, 1)}}
+                                                {{number_format($ft->WH, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->WHOB, 1)}}
+                                                {{number_format($ft->WHOB, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->BD, 1)}}
+                                                {{number_format($ft->BD, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->STB, 1)}}
+                                                {{number_format($ft->STB, 1, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->MOHH, 0)}}
+                                                {{number_format($ft->MOHH, 0, ",", ".")}}
                                             </td>
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->RITASI,1)}}
-                                            </td>
-                                            
-                                            <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->OB,0)}}
+                                                {{number_format($ft->RITASI,1, ",", ".")}}
                                             </td>
                                             
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->DIST,0)}}
+                                                {{number_format($ft->OB,0, ",", ".")}}
                                             </td>
                                             
                                             <td class="px-4 py-3 text-sm">
-                                                {{number_format($ft->PTY,0)}}
+                                                {{number_format($ft->DIST,0, ",", ".")}}
+                                            </td>
+                                            
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->PTY,0, ",", ".")}}
                                             </td>
                                         @endforeach
                                     </tr>

@@ -10,9 +10,51 @@ class PopulasiUnitPMA2BController extends Controller
 {
     public function index()
     {
-        $data = DB::table('pmaa2b')->select(DB::raw("
+        if(request()->bulan){            
+            $bulan = Carbon::createFromFormat('Y-m', request()->bulan);
+            $tglMulai = $bulan->startOfMonth()->copy() . " AND " . $bulan->endOfMonth()->copy();
+        } else {
+            $bulan = Carbon::now();
+            $tglMulai =  $bulan->startOfMonth()->copy() . " AND " . $bulan->endOfMonth()->copy();
+        }
+
+        $sql = "WITH summ AS
+        (
+            SELECT 
+            COALESCE(A.nom_unit, '-- SUM --') nom_unit,
+            SUM(IF((A.kode='008') OR
+                    (A.kode='009') OR
+                        (A.kode='010') OR
+                        (A.kode='011') OR
+                        (A.kode='012'),jam,0)) AS wh,
+            SUM(IF((A.KODE = '001'), A.JAM, 0)) AS WHOB,
+            SUM(IF((LEFT(A.KODE, 1)='b'),A.JAM,0)) AS BD,
+            SUM(IF((LEFT(A.KODE, 1)='s'),A.JAM,0)) AS STB,
+            SUM(A.JAM) AS MOHH,
+            (B.prod) AS bcm,
+            (B.distbcm) AS distbcm,
+            (B.rit) AS rit
+            FROM pmaa2b A
+            JOIN (
+                SELECT unit_load, SUM(bcm) AS prod, SUM(distbcm) distbcm, SUM(ritasi) rit 
+                FROM pmatp WHERE (TGL BETWEEN '2022-06-01' AND '2022-06-30') 
+                AND kodesite='i' 
+                GROUP BY unit_load) B
+            ON A.nom_unit = B.unit_load
+            WHERE (A.TGL BETWEEN '2022-06-01' AND '2022-06-30')
+            AND kodesite='i'
+            GROUP BY nom_unit
+        )  
+        SELECT *,IFNULL((bcm/wh),0) pty,(distbcm/bcm) jarak FROM summ WHERE bcm !=0 GROUP BY nom_unit";
+
+        dd($sql);
+
+        $data =collect(DB::select($sql));
+        
+        DB::table('pmaa2b')->select(DB::raw("
         COALESCE(nom_unit, '-- SUM --') nom_unit,
         SUM(IF((LEFT(KODE, 1)='0'),JAM,0)) AS WH,
+        SUM(IF((KODE = '001'), JAM, 0)) AS WHOB,
         SUM(IF((LEFT(KODE, 1)='b'),JAM,0)) AS BD,
         SUM(IF((LEFT(KODE, 1)='s'),JAM,0)) AS STB,
         SUM(JAM) AS MOHH"))
@@ -37,13 +79,10 @@ class PopulasiUnitPMA2BController extends Controller
 
         if(request()->jenisTampilan == "0" || is_null(request()->jenisTampilan)){
             $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
-
             return view('pma2b.populasi.index', compact('data', 'site'));
         }
         else{
             $data = $data->values();
-            // dd();
-
             return view('pma2b.populasi.index', compact('data', 'site'));
         }
     }

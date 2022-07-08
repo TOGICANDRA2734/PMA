@@ -150,16 +150,16 @@
                         ></path>
                       </svg>
                     </button>
-
-
                     <ul>
                       <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                        <a href="{{route('populasi-unit-pmh.index')}}">Populasi Unit</a>
+                        <a href="{{route('populasi-unit-pmh.index')}}">Produksi TP</a>
                       </li>
                       <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                        <a href="{{route('distribusi-jam-tp.index')}}">Distribusi Jam Tp</a>
+                        <a href="{{route('pma2b.populasi.index')}}">Produksi A2B</a>
                       </li>
-                      
+                      <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a href="{{route('distribusi-jam-tp.index')}}">Distribusi Jam TP</a>
+                      </li>
                       <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                         <a href="{{route('pma2b.distribusi.index')}}">Distribusi Jam PMA2B</a>
                       </li>
@@ -226,9 +226,6 @@
                       <a class="w-full" href="#">
                         Laporan
                       </a>
-                    </li>
-                    <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                      <a href="{{route('pma2b.populasi.index')}}">Populasi Unit PMA2B</a>
                     </li>
                   </ul>
                 </template>
