@@ -12,11 +12,19 @@ class PopulasiUnitPMA2BController extends Controller
     {
         if(request()->bulan){            
             $bulan = Carbon::createFromFormat('Y-m', request()->bulan);
-            $tglMulai = $bulan->startOfMonth()->copy() . " AND " . $bulan->endOfMonth()->copy();
+            $tanggal = "TGL BETWEEN '" . $bulan->startOfMonth()->copy() . "' AND '" . $bulan->endOfMonth()->copy(). "'";
         } else {
             $bulan = Carbon::now();
-            $tglMulai =  $bulan->startOfMonth()->copy() . " AND " . $bulan->endOfMonth()->copy();
+            $tanggal =  "TGL BETWEEN '" . $bulan->startOfMonth()->copy() . "' AND '" . $bulan->endOfMonth()->copy()."'";
+            // dd($tanggal);
         }
+
+        if(request()->site){
+            $site = "AND  kodesite='".request()->site."'";
+        } else {
+            $site = '';
+        }
+
 
         $sql = "WITH summ AS
         (
@@ -37,17 +45,17 @@ class PopulasiUnitPMA2BController extends Controller
             FROM pmaa2b A
             JOIN (
                 SELECT unit_load, SUM(bcm) AS prod, SUM(distbcm) distbcm, SUM(ritasi) rit 
-                FROM pmatp WHERE (TGL BETWEEN '2022-06-01' AND '2022-06-30') 
-                AND kodesite='i' 
+                FROM pmatp WHERE (".$tanggal.") 
+                ".$site."
                 GROUP BY unit_load) B
             ON A.nom_unit = B.unit_load
-            WHERE (A.TGL BETWEEN '2022-06-01' AND '2022-06-30')
-            AND kodesite='i'
+            WHERE (". $tanggal .")
+            ". $site ."
             GROUP BY nom_unit
         )  
         SELECT *,IFNULL((bcm/wh),0) pty,(distbcm/bcm) jarak FROM summ WHERE bcm !=0 GROUP BY nom_unit";
 
-        dd($sql);
+        // dd($sql);
 
         $data =collect(DB::select($sql));
         
