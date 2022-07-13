@@ -37,7 +37,7 @@
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
             <div class="w-full overflow-x-auto"  style="max-height: 36rem;">
                 <table class="w-full whitespace-no-wrap border">
-                    <thead class="bg-stone-800">
+                    <thead class="bg-stone-800 sticky top-0">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
@@ -50,10 +50,10 @@
                             <th class="px-4 py-3 border">BD Total</th>
                             <th class="px-4 py-3 border">STB Total</th>
                             <th class="px-4 py-3 border">MOHH Total</th>
-                            <th class="px-4 py-3 border">RIT</th>
                             <th class="px-4 py-3 border">OB (BCM)</th>
-                            <th class="px-4 py-3 border">DIST</th>
+                            <th class="px-4 py-3 border">RIT</th>
                             <th class="px-4 py-3 border">PTY</th>
+                            <th class="px-4 py-3 border">Jarak</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -61,10 +61,16 @@
                             <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
                                 <td class="px-4 py-3 border">{{$key+1}}</td>
                                 @foreach($values as $keys => $value)
-                                    @if($keys != "K_kode")
-                                        <td class="px-4 py-3 border">
-                                            {{$value}}
-                                        </td>
+                                    @if($keys != "distbcm")
+                                        @if(is_double($value))
+                                            <td class="px-4 py-3 border">
+                                                {{number_format($value, 1, ",", ".")}}
+                                            </td>
+                                        @else
+                                            <td class="px-4 py-3 border">
+                                                {{$value}}
+                                            </td>
+                                        @endif
                                     @endif
                                 @endforeach
                             </tr>

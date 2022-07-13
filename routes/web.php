@@ -4,6 +4,7 @@ use App\Http\Controllers\cobacobacontroller;
 use App\Http\Controllers\DistribusiJamPMA2BController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PDFViewController;
+use App\Http\Controllers\PopulasiPlantController;
 use App\Http\Controllers\PopulasiUnitController;
 use App\Http\Controllers\PopulasiUnitPMA2BController;
 use App\Http\Controllers\ProfileController;
@@ -36,6 +37,7 @@ Route::post('/setting/update', [SettingController::class, 'update'])->name('sett
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/populasi-unit-pma2b', [PopulasiUnitPMA2BController::class, 'index'])->name('pma2b.populasi.index');
 Route::get('/distribusi-jam-pma2b', [DistribusiJamPMA2BController::class, 'index'])->name('pma2b.distribusi.index');
+Route::get('/populasi-plant', [PopulasiPlantController::class, 'index'])->name('populasi-plant.index');
 
 // File Permintaan pak Fantri untuk DB RAW
 Route::get('/cobacoba', [cobacobacontroller::class, 'index'])->name('cobacoba');

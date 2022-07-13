@@ -13,16 +13,19 @@ class PopulasiUnitPMA2BController extends Controller
         if(request()->bulan){            
             $bulan = Carbon::createFromFormat('Y-m', request()->bulan);
             $tanggal = "TGL BETWEEN '" . $bulan->startOfMonth()->copy() . "' AND '" . $bulan->endOfMonth()->copy(). "'";
+            $tanggalKedua = "a.TGL BETWEEN '" . $bulan->startOfMonth()->copy() . "' AND '" . $bulan->endOfMonth()->copy(). "'";
         } else {
             $bulan = Carbon::now();
             $tanggal =  "TGL BETWEEN '" . $bulan->startOfMonth()->copy() . "' AND '" . $bulan->endOfMonth()->copy()."'";
-            // dd($tanggal);
+            $tanggalKedua =  "a.TGL BETWEEN '" . $bulan->startOfMonth()->copy() . "' AND '" . $bulan->endOfMonth()->copy()."'";
         }
 
         if(request()->site){
             $site = "AND  kodesite='".request()->site."'";
+            $siteKedua = "AND  a.kodesite='".request()->site."'";
         } else {
             $site = '';
+            $siteKedua = '';
         }
 
 
@@ -49,36 +52,37 @@ class PopulasiUnitPMA2BController extends Controller
                 ".$site."
                 GROUP BY unit_load) B
             ON A.nom_unit = B.unit_load
-            WHERE (". $tanggal .")
-            ". $site ."
+            WHERE (". $tanggalKedua .")
+            ". $siteKedua ."
             GROUP BY nom_unit
         )  
         SELECT *,IFNULL((bcm/wh),0) pty,(distbcm/bcm) jarak FROM summ WHERE bcm !=0 GROUP BY nom_unit";
 
         // dd($sql);
 
-        $data =collect(DB::select($sql));
-        
-        DB::table('pmaa2b')->select(DB::raw("
-        COALESCE(nom_unit, '-- SUM --') nom_unit,
-        SUM(IF((LEFT(KODE, 1)='0'),JAM,0)) AS WH,
-        SUM(IF((KODE = '001'), JAM, 0)) AS WHOB,
-        SUM(IF((LEFT(KODE, 1)='b'),JAM,0)) AS BD,
-        SUM(IF((LEFT(KODE, 1)='s'),JAM,0)) AS STB,
-        SUM(JAM) AS MOHH"))
-        ->when((request()->bulan) == null, function($data){
-            $bulan = Carbon::now();
-            $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
-        })
-        ->when(request()->bulan, function($data){
-            $bulan = Carbon::createFromFormat('Y-m', request()->bulan);
-            $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
-        })
-        ->when(request()->site, function($data){
-            $data = $data->where('kodesite', '=', request()->site);
-        })
-        ->groupBy(DB::raw("nom_unit WITH ROLLUP"))
-        ->get();
+        $data = collect(DB::select($sql));
+        // dd($data);
+
+        // DB::table('pmaa2b')->select(DB::raw("
+        // COALESCE(nom_unit, '-- SUM --') nom_unit,
+        // SUM(IF((LEFT(KODE, 1)='0'),JAM,0)) AS WH,
+        // SUM(IF((KODE = '001'), JAM, 0)) AS WHOB,
+        // SUM(IF((LEFT(KODE, 1)='b'),JAM,0)) AS BD,
+        // SUM(IF((LEFT(KODE, 1)='s'),JAM,0)) AS STB,
+        // SUM(JAM) AS MOHH"))
+        // ->when((request()->bulan) == null, function($data){
+        //     $bulan = Carbon::now();
+        //     $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
+        // })
+        // ->when(request()->bulan, function($data){
+        //     $bulan = Carbon::createFromFormat('Y-m', request()->bulan);
+        //     $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);
+        // })
+        // ->when(request()->site, function($data){
+        //     $data = $data->where('kodesite', '=', request()->site);
+        // })
+        // ->groupBy(DB::raw("nom_unit WITH ROLLUP"))
+        // ->get();
 
         $site = collect(DB::select(DB::raw("SELECT kodesite, namasite, lokasi
         FROM SITE
