@@ -69,8 +69,19 @@ class PopulasiPlantController extends Controller
             ")
         ));
 
-        // dd($jenisBrand);
+        $summary = DB::table('plant_populasi')->select(DB::raw('DISTINCT plant_populasi.tipe, COUNT(plant_populasi.tipe) TOTAL'))
+        ->join('plant_hm', 'plant_populasi.nom_unit', '=', 'plant_hm.nom_unit')
+        ->when(request()->site, function($data){
+            $data = $data->where('plant_hm.kodesite', '=', request()->site);
+        })
+        ->when(request()->jenisTipe, function($data){
+            $data = $data->where('plant_populasi.model', '=', request()->jenisTipe);
+        })
+        ->groupBy('plant_populasi.tipe')
+        ->groupBy('plant_hm.tgl')
+        ->get();
 
-        return view('plant.index', compact('data', 'site', 'jenisTipe', 'jenisBrand'));
+        
+        return view('plant.index', compact('data', 'site', 'jenisTipe', 'jenisBrand', 'summary'));
     }
 }

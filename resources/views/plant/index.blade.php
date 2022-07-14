@@ -39,6 +39,7 @@
                     @endforeach
                 </select>
             </div>
+            
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Proses</button>
         </form>
 
@@ -118,6 +119,16 @@
                     {{$data->links()}}
                 </div>
             @endif
+    </div>
+
+    <div class="bg-white p-5">
+        <div class="grid grid-cols-4 gap-5">
+            @foreach($summary as $data)
+                <div>
+                    {{$data->tipe}} : {{$data->TOTAL}}
+                </div>
+            @endforeach
+        </div>
     </div>
 </main>
 

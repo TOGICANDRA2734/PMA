@@ -109,7 +109,6 @@ class TPController extends Controller
         }
         else{
             $data = $data->values();
-            // dd();
 
             return view('distribusi-jam-tp.index', compact('site', 'data', 'filter'));
         }

@@ -7,7 +7,7 @@
             Produksi A2B
         </h2>
 
-        <form action="{{route(request()->route()->getName())}}" method="GET" class="grid grid-cols-4 gap-4">
+        <form action="{{route(request()->route()->getName())}}" method="GET" class="grid grid-cols-3 gap-4">
             <!-- Bulan -->
             <div class="">
                 <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>
@@ -21,13 +21,6 @@
                     @foreach ($site as $st)
                         <option value="{{$st->kodesite}}" {{old('site', request()->site) == $st->kodesite ? 'selected' : ''}}>{{$st->namasite}} - {{$st->lokasi}}</option>
                     @endforeach
-                </select>
-            </div>
-            <div>
-                <label class="font-bold pb-1 text-sm" for="jenisTampilan">Tampilan</label>
-                <select class="p-2 border border-gray-100 rounded-md w-full" name="jenisTampilan" id="jenisTampilan">
-                    <option value="0" selected>Tampilkan Per Halaman</option>
-                    <option value="1">Tampilkan Semua Halaman</option>
                 </select>
             </div>
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
@@ -74,15 +67,93 @@
                                     @endif
                                 @endforeach
                             </tr>
+                            @if(isset(($data[$key + 1])))
+                                @php 
+                                    $nextRow = $data[$key + 1]
+                                @endphp
+
+                                @if(substr($values->nom_unit,0,2) != substr($nextRow->nom_unit,0,2))
+                                    <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                                        <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                        @php
+                                            $hasilFilter = $filter->filter(function($item, $key) use ($values){
+                                                return in_array($key, [substr($values->nom_unit,0,2)]);
+                                            });
+                                        @endphp
+                                        @foreach($hasilFilter as $ft)
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->wh, 1, ",", ".")}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->WHOB, 1, ",", ".")}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->BD, 1, ",", ".")}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->STB, 1, ",", ".")}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->MOHH, 0, ",", ".")}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->bcm,1, ",", ".")}}
+                                            </td>     
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->rit,0, ",", ".")}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->pty,0, ",", ".")}}
+                                            </td>
+                                            <td class="px-4 py-3 text-sm">
+                                                {{number_format($ft->jarak,0, ",", ".")}}
+                                            </td>
+                                        @endforeach
+                                    </tr>
+                                @endif
+                            @elseif($key == count($data)-1)
+                                <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
+                                    <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                    @php
+                                        $hasilFilter = $filter->filter(function($item, $key) use ($values){
+                                            return in_array($key, [substr($values->nom_unit,0,2)]);
+                                        });
+                                    @endphp
+                                    @foreach($hasilFilter as $ft)
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->wh, 1, ",", ".")}}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->WHOB, 1, ",", ".")}}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->BD, 1, ",", ".")}}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->STB, 1, ",", ".")}}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->MOHH, 0, ",", ".")}}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->bcm,1, ",", ".")}}
+                                        </td>     
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->rit,0, ",", ".")}}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->pty,0, ",", ".")}}
+                                        </td>
+                                        <td class="px-4 py-3 text-sm">
+                                            {{number_format($ft->jarak,0, ",", ".")}}
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>
             </div>
-            @if(request()->jenisTampilan == 0)
-                <div class="px-4 py-3 text-xs tracking-wide text-white uppercase border bg-stone-800">
-                    {{$data->links()}}
-                </div>
-            @endif
         </div>
 </main>
 
