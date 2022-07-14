@@ -158,6 +158,9 @@
                         <a href="{{route('pma2b.populasi.index')}}">Produksi A2B</a>
                       </li>
                       <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                        <a href="{{route('populasi-plant.index')}}">Produksi Plant</a>
+                      </li>
+                      <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                         <a href="{{route('distribusi-jam-tp.index')}}">Distribusi Jam TP</a>
                       </li>
                       <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
