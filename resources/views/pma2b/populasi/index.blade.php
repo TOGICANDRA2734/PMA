@@ -23,7 +23,7 @@
                     @endforeach
                 </select>
             </div>
-            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Select</button>
+            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Proses</button>
         </form>
 
         <!-- Content Table -->

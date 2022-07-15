@@ -75,6 +75,9 @@ class PopulasiUnitController extends Controller
                 $jenis = request()->jenis;
                 $data = $data->whereRaw("LEFT(NOM_UNIT, 2) = '$jenis'");
             })
+            ->when(request()->nama, function($data){
+                $data = $data->where('NOM_UNIT', 'like', '%'.request()->nama.'%');
+            })
             ->groupBy('NOM_UNIT')
             ->get();
         
