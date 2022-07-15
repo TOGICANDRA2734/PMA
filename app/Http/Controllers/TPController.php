@@ -52,6 +52,9 @@ class TPController extends Controller
         ->when(request()->site, function($data){
             $data = $data->where('kodesite', '=', request()->site);
         })
+        ->when(request()->nama, function($data){
+            $data = $data->where('NOM_UNIT', 'like', '%'.request()->nama.'%');
+        })
         ->groupBy('NOM_UNIT')
         ->get();
 

@@ -105,6 +105,16 @@
             </div>            
         </form>
 
+        <form class="flex justify-end mt-5" action="{{route(request()->route()->getName())}}" method="GET">
+            @foreach (request()->all() as $key => $values) 
+                <input type="hidden" name="{{$key}}" id="{{$key}}" class="text-black w-7 text-xs" value="{{$values}}">
+            @endforeach
+            <input name="nama" id="nama" type="text" placeholder="Cari data" class="p-2 rounded-md mr-3 w-full md:w-auto text-xs md:text-sm" autocomplete="off">
+            <button class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-stone-600 border border-transparent rounded-md active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-purple">
+                Cari
+            </button>
+        </form>
+
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
             <div class="w-full overflow-x-auto" style="max-height: 36rem;">
