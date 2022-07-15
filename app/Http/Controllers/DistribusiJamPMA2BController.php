@@ -11,7 +11,7 @@ class DistribusiJamPMA2BController extends Controller
     public function index()
     {
         $data = DB::table('pmaa2b')->select(DB::raw("
-        COALESCE(nom_unit, '-- SUM --') nom_unit,
+        COALESCE(nom_unit, 'SUM') nom_unit,
         LEFT(nom_unit,4) K_kode,
         SUM(IF(kode='008',jam,0)) lr,                
         SUM(IF(kode='009',jam,0)) ll,                

@@ -59,6 +59,14 @@ function data() {
     togglePagesMenu3() {
       this.isPagesMenuOpen3 = !this.isPagesMenuOpen3
     },
+    isPagesMenuOpen4: false,
+    togglePagesMenu4() {
+      this.isPagesMenuOpen4 = !this.isPagesMenuOpen4
+    },
+    isDetailPlantOpen: false,
+    toggleDetailPlant() {
+      this.isDetailPlantOpen = !this.isDetailPlantOpen
+    },
     // Modal 1 - Login
     isModalOpen: false,
     trapCleanup: null,

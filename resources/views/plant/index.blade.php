@@ -53,13 +53,13 @@
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
             <div class="w-full overflow-x-auto"  style="max-height: 36rem;">
-                <table class="w-full whitespace-no-wrap border">
+                <table class="w-full whitespace-no-wrap border table-auto">
                     <thead class="bg-stone-800 sticky top-0">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3 border">No</th>
                             <th class="px-4 py-3 border">Nom Unit</th>
                             <th class="px-4 py-3 border">Model</th>
-                            <th class="px-4 py-3 border">Type</th>
+                            <th class="px-4 py-3 border">Type Unit</th>
                             <th class="px-4 py-3 border">SN</th>
                             <th class="px-4 py-3 border">Engine Brand</th>
                             <th class="px-4 py-3 border">Engine Model</th>
@@ -76,31 +76,36 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        @foreach($data as $dt)
+                        @foreach($data as $key => $dt)
                             <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
+                                <td class="px-4 py-3 border">
+                                    {{$key + 1}}    
+                                </td>
                                 @foreach($dt as $key => $values)
                                     @if($key != "pic_1")
                                         @if($key != "pic_2")
                                             @if($key != "kodesite")
                                                 @if($key != "del")
-                                                    @if(false === strtotime($values))
-                                                        <td class="px-4 py-3 border">
-                                                            @if(is_double($values))
-                                                                {{number_format($values, 0, ',', '.')}}
-                                                            @else
-                                                                {{$values}}
-                                                            @endif    
-                                                        </td>
-                                                    @else
-                                                        @if ($key == 'sn' or $key == 'engine_brand' or $key == 'id')
+                                                    @if($key != "id")
+                                                        @if(false === strtotime($values))
                                                             <td class="px-4 py-3 border">
-                                                                {{$values}}
+                                                                @if(is_double($values))
+                                                                    {{number_format($values, 0, ',', '.')}}
+                                                                @else
+                                                                    {{$values}}
+                                                                @endif    
                                                             </td>
                                                         @else
-                                                            <td class="px-4 py-3 border">
-                                                                <!-- Tanggal  -->
-                                                                {{date_format(new DateTime($values), "d/m/Y")}}
-                                                            </td>
+                                                            @if ($key == 'sn' or $key == 'engine_brand' or $key == 'id')
+                                                                <td class="px-4 py-3 border">
+                                                                    {{$values}}
+                                                                </td>
+                                                            @else
+                                                                <td class="px-4 py-3 border">
+                                                                    <!-- Tanggal  -->
+                                                                    {{date_format(new DateTime($values), "d/m/Y")}}
+                                                                </td>
+                                                            @endif
                                                         @endif
                                                     @endif
                                                 @endif
@@ -121,15 +126,55 @@
             @endif
     </div>
 
-    <div class="bg-white p-5">
-        <div class="grid grid-cols-4 gap-5">
-            @foreach($summary as $data)
-                <div>
-                    {{$data->tipe}} : {{$data->TOTAL}}
+    <!-- Dropdown Detail -->
+    <div class="bg-white p-5 rounded-md">
+    <button
+        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+        @click="toggleDetailPlant"
+        aria-haspopup="true"
+        >
+        <span class="inline-flex items-center">
+            <span class="">Jumlah Per Unit</span>
+        </span>
+        <svg
+            class="w-4 h-4"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+        >
+            <path
+            fill-rule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+            ></path>
+        </svg>
+        </button>
+        <template x-if="isDetailPlantOpen">
+            <ul
+                x-transition:enter="transition-all ease-in-out duration-300"
+                x-transition:enter-start="opacity-25 max-h-0"
+                x-transition:enter-end="opacity-100 max-h-xl"
+                x-transition:leave="transition-all ease-in-out duration-300"
+                x-transition:leave-start="opacity-100 max-h-xl"
+                x-transition:leave-end="opacity-0 max-h-0"
+                class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                aria-label="submenu"
+            >
+                <div class="grid grid-cols-5 gap-2">
+                    @foreach($summary as $data)
+                        <div class="text-xs p-2 ">
+                            <span class="font-semibold">{{$data->type_unit}}:</span> {{$data->TOTAL}} Unit
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+            </ul>
+        </template>
+
+
+        
     </div>
+
+    
 </main>
 
 <script>

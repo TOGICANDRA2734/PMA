@@ -37,7 +37,8 @@ class PopulasiPlantController extends Controller
         ->when(request()->nama, function($data){
             $data = $data->where('plant_populasi.nom_unit', 'like', '%'.request()->nama.'%');
         })   
-        ->paginate(50);
+        ->paginate(request()->paginate ? request()->paginate : 50)
+        ->withQueryString();
 
         // dd($data);
 
@@ -69,7 +70,7 @@ class PopulasiPlantController extends Controller
             ")
         ));
 
-        $summary = DB::table('plant_populasi')->select(DB::raw('DISTINCT plant_populasi.tipe, COUNT(plant_populasi.tipe) TOTAL'))
+        $summary = DB::table('plant_populasi')->select(DB::raw('DISTINCT plant_populasi.type_unit, COUNT(plant_populasi.type_unit) TOTAL'))
         ->join('plant_hm', 'plant_populasi.nom_unit', '=', 'plant_hm.nom_unit')
         ->when(request()->site, function($data){
             $data = $data->where('plant_hm.kodesite', '=', request()->site);
@@ -77,7 +78,10 @@ class PopulasiPlantController extends Controller
         ->when(request()->jenisTipe, function($data){
             $data = $data->where('plant_populasi.model', '=', request()->jenisTipe);
         })
-        ->groupBy('plant_populasi.tipe')
+        ->when(request()->nama, function($data){
+            $data = $data->where('plant_populasi.nom_unit', 'like', '%'.request()->nama.'%');
+        })   
+        ->groupBy('plant_populasi.type_unit')
         ->groupBy('plant_hm.tgl')
         ->get();
 

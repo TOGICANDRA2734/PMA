@@ -28,7 +28,7 @@
             <div>
                 <label class="font-bold pb-1 text-sm" for="jenis">Jenis</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="jenis" id="jenis">
-                    <option value="" selected disabled>Jenis/Type</option>
+                    <option value="" selected >Semua Type</option>
                     @foreach ($jenis as $jns)
                         <option value="{{$jns->kode_unit}}" {{old('jenis', request()->jenis) == $jns->kode_unit ? 'selected' : ''}}>{{$jns->kode_unit}}</option>
                     @endforeach
