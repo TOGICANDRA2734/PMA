@@ -28,6 +28,14 @@ class PopulasiUnitPMA2BController extends Controller
             $siteKedua = '';
         }
 
+        if(request()->nama){
+            $nama = "AND  nom_unit LIKE '%".request()->nama."%'";
+            $namaKedua = "AND  a.nom_unit LIKE '%".request()->nama."%'";
+        } else {
+            $nama = '';
+            $namaKedua = '';
+        }
+
         $sql = "WITH summ AS
         (
             SELECT 
@@ -55,7 +63,7 @@ class PopulasiUnitPMA2BController extends Controller
                 GROUP BY unit_load) B
             ON A.nom_unit = B.unit_load
             WHERE (". $tanggalKedua .")
-            ". $siteKedua ."
+            ". $siteKedua . $namaKedua . "
             GROUP BY nom_unit 
         )  
         SELECT *,IFNULL((bcm/wh),0) pty,(distbcm/bcm) jarak FROM summ WHERE bcm !=0 GROUP BY nom_unit ";
@@ -63,6 +71,8 @@ class PopulasiUnitPMA2BController extends Controller
         // dd($sql);
 
         $data = collect(DB::select($sql));
+
+        // dd($data);
 
         $filter = collect(DB::select($sql))
         ->toBase()
