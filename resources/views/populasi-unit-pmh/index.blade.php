@@ -7,16 +7,16 @@
             Produksi TP
         </h2>
 
-        <form action="{{route('populasi-unit-pmh.index')}}" method="GET" class="grid grid-cols-5 gap-4">
+        <form action="{{route('populasi-unit-pmh.index')}}" method="GET" class="grid grid-cols-5 gap-1 sm:gap-4">
             <!-- Bulan -->
             <div class="">
-                <label class="font-bold pb-1 text-sm" for="bulan">Tanggal Mulai</label>
-                <input value="{{ request()->bulan == null ? date('Y-m') : old('bulan', request()->bulan)}}" type="month" name="bulan" id="bulan" class="p-2 border border-gray-100 rounded-md w-full">
+                <label class="font-bold pb-1 text-xs sm:text-sm" for="bulan">Tanggal</label>
+                <input value="{{ request()->bulan == null ? date('Y-m') : old('bulan', request()->bulan)}}" type="month" name="bulan" id="bulan" class="p-2 border border-gray-100 rounded-md w-full text-xs sm:text-base">
             </div>
 
             <div class="">
-                <label fo class="font-bold pb-1 text-sm"r="site">Nama Site</label>
-                <select class="p-2 border border-gray-100 rounded-md w-full" name="site" id="site">
+                <label fo class="font-bold pb-1 text-xs sm:text-sm"r="site">Site</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full text-xs sm:text-base" name="site" id="site">
                     <option value="" selected>Semua Site</option>
 
                     @foreach ($site as $st)
@@ -26,8 +26,8 @@
             </div>
 
             <div>
-                <label class="font-bold pb-1 text-sm" for="jenis">Jenis</label>
-                <select class="p-2 border border-gray-100 rounded-md w-full" name="jenis" id="jenis">
+                <label class="font-bold pb-1 text-xs sm:text-sm" for="jenis">Jenis</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full text-xs sm:text-base" name="jenis" id="jenis">
                     <option value="" selected >Semua Type</option>
                     @foreach ($jenis as $jns)
                         <option value="{{$jns->kode_unit}}" {{old('jenis', request()->jenis) == $jns->kode_unit ? 'selected' : ''}}>{{$jns->kode_unit}}</option>
@@ -35,13 +35,13 @@
                 </select>
             </div>
             <div>
-                <label class="font-bold pb-1 text-sm" for="jenisTampilan">Tampilkan Total Per Unit</label>
-                <select class="p-2 border border-gray-100 rounded-md w-full" name="jenisTampilan" id="jenisTampilan">
+                <label class="font-bold pb-1 text-xs sm:text-sm" for="jenisTampilan">Total/Unit</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full text-xs sm:text-base" name="jenisTampilan" id="jenisTampilan">
                     <option value="0" selected>Jangan Tampilkan</option>
                     <option value="1">Tampilkan</option>
                 </select>
             </div>
-            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Proses</button>
+            <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out text-xs sm:text-base">Proses</button>
         </form>
 
         <form class="flex justify-end mt-5" action="{{route(request()->route()->getName())}}" method="GET">
@@ -58,7 +58,7 @@
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
             <div class="w-full overflow-x-auto max-h-96 md:max-h-[38rem]">
                 <table class="w-full whitespace-no-wrap border table-auto">
-                    <thead class="bg-stone-800 sticky top-0 z-20">
+                    <thead class="bg-stone-800 sticky top-0 z-10">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone sticky left-0 bg-stone-800 z-20">No Unit</th>

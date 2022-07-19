@@ -137,9 +137,15 @@
                                         @endif
                                     @endif
                                 @endforeach
-                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white flex ">
                                     <button @click="openModal2" value="{{$dt->id}}" class="tbDetail px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-stone-800 border border-transparent rounded-md active:bg-stone-800 hover:bg-stone-900 focus:outline-none focus:shadow-outline-purple">
-                                        Detail
+                                        ...
+                                    </button>
+                                    <a href="{{route('transaksi-unit.edit', ['id' => $dt->id])}}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-yellow-400 border border-transparent rounded-md active:bg-yellow-600 hover:bg-yellow-900 focus:outline-none focus:shadow-outline-purple">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </a>
+                                    <button onClick="destroy(this.id)" id="{{ $dt->id }}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-500 border border-transparent rounded-md active:bg-red-600 hover:bg-red-900 focus:outline-none focus:shadow-outline-purple">
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -255,7 +261,7 @@
                     "</tr>" + 
                     "<tr class='data-row text-center text-gray-700 dark:text-gray-400'>"+
                         "<th class='px-1 py-2 md:px-4 md:py-3 border-b border-r text-xs bg-stone-800 text-white'>DO</th>" + 
-                        "<td class='px-2 py-2 md:px-4 md:py-3 text-xs md:text-sm'>" + response['data'][0].DO + "</td>" + 
+                        "<td class='px-2 py-2 md:px-4 md:py-3 text-xs md:text-sm'>" + dateConverter(response['data'][0].DO)  + "</td>" + 
                     "</tr>" + 
                     "<tr class='data-row text-center text-gray-700 dark:text-gray-400'>"+
                         "<th class='px-1 py-2 md:px-4 md:py-3 border-b border-r text-xs bg-stone-800 text-white'>Height</th>" + 

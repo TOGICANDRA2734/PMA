@@ -12,24 +12,25 @@
                 <label class="font-bold pb-1 text-sm" for="type">Type Unit</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="type" id="type">
                     <option value="" selected>Semua Unit</option>
-
-                   
+                    @foreach ($site as $st)
+                        <option value="{{$st->kodesite}}" {{old('site', request()->site) == $st->kodesite ? 'selected' : ''}}>{{$st->namasite}} - {{$st->lokasi}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="">
                 <label class="font-bold pb-1 text-sm" for="site">Nama Site</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="site" id="site">
                     <option value="" selected>Semua Site</option>
-
-                   
+                    @foreach ($jenisTipe as $jt)
+                        <option value="{{$jt->type_unit}}" {{old('jenisTipe', request()->jenisTipe) == $jt->type_unit ? 'selected' : ''}}>{{$jt->type_unit}}</option>
+                    @endforeach
                 </select>
             </div>
             <button class="p-2 border bg-stone-800 border-gray-100 rounded-md text-white font-bold hover:bg-gray-900 duration-150 ease-in-out">Proses</button>
         </form>
 
-        <!-- Content Table -->
-        <div class="bg-white p-10 mt-5 rounded-lg">
-            <canvas id="myChart"></canvas>
+        <div class="w-full p-10 mt-10 bg-white">
+            {{ $userChart->container() }}
         </div>
 </main>
 
@@ -39,6 +40,16 @@
         $(el).addClass('bg-gray-200', 'text-white')
     }
 </script>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+    });
+</script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script>
+{!! $userChart->script() !!}
+
 <script>
   const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -75,5 +86,58 @@
             }
         }
     });
+</script>
+<script>
+    //ajax delete
+    function destroy(id) {
+        var id = id;
+        var token = $("meta[name='csrf-token']").attr("content");
+
+        Swal.fire({
+            title: 'APAKAH KAMU YAKIN ?',
+            text: "INGIN MENGHAPUS DATA INI!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'BATAL',
+            confirmButtonText: 'YA, HAPUS!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //ajax delete
+                jQuery.ajax({
+                    url: `/transaksi-unit/destroy/${id}`,
+                    data: {
+                        "id": id,
+                        "_token": token
+                    },
+                    type: 'DELETE',
+                    success: function (response) {
+                        if (response.status == "success") {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'BERHASIL!',
+                                text: 'DATA BERHASIL DIHAPUS!',
+                                showConfirmButton: false,
+                                timer: 3000
+                            }).then(function () {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'GAGAL!',
+                                text: 'DATA GAGAL DIHAPUS!',
+                                showConfirmButton: false,
+                                timer: 3000
+                            }).then(function () {
+                                location.reload();
+                            });
+                        }
+                    }
+                });
+            }
+        })
+    }
 </script>
 @endsection

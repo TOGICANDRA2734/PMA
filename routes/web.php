@@ -46,6 +46,9 @@ Route::get('/transaksi-plant', [TransaksiPlantController::class, 'index'])->name
 Route::post('/transaksi-plant/store', [TransaksiPlantController::class, 'store'])->name('transaksi-plant.post');
 Route::get('/transaksi-unit', [TransaksiUnitController::class, 'index'])->name('transaksi-unit.index');
 Route::post('/transaksi-unit/store', [TransaksiUnitController::class, 'store'])->name('transaksi-unit.store');
+Route::get('/transaksi-unit/edit/{id}', [TransaksiUnitController::class, 'edit'])->name('transaksi-unit.edit');
+Route::put('/transaksi-unit/update/{id}', [TransaksiUnitController::class, 'update'])->name('transaksi-unit.update');
+Route::put('/transaksi-unit/destroy/{id}', [TransaksiUnitController::class, 'destroy'])->name('transaksi-unit.destroy');
 Route::get('/MA-unit', [MAUnitController::class, 'index'])->name('transaksi-plant.ma');
 
 // File Permintaan pak Fantri untuk DB RAW
