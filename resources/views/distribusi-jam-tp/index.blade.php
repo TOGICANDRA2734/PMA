@@ -117,12 +117,12 @@
 
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
-            <div class="w-full overflow-x-auto" style="max-height: 36rem;">
+            <div class="w-full overflow-x-auto max-h-96 md:max-h-[38rem]">
                 <table class="w-full whitespace-no-wrap border table-auto">
-                    <thead class="bg-stone-800">
+                    <thead class="bg-stone-800 sticky top-0 z-20">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
-                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone  sticky left-0 bg-stone-800">No Unit</th>
                             <th colspan="7" class="px-4 py-3 text-center border-r">Working Hours</th>
                             <th rowspan="2" class="px-4 py-3 text-center border-r">BD</th>
                             <th colspan="19" class="px-4 py-3 text-center border-r">STB</th>
@@ -147,99 +147,99 @@
 
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @foreach($data as $key => $values)
-                            <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
-                                <td class="px-4 py-3 border">{{$key+1}}</td>
-                                <td class="px-4 py-3 border">
+                            <tr class="group data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">{{$key+1}}</td>
+                                <td class="group-hover:bg-gray-400 group-hover:text-white sticky left-0 bg-white">
                                     {{$values->NOM_UNIT}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->OB, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->ROOM, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->POR, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->TRAV, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->GEN, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->RENT, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->TOTAL, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->BD, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S00, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S01, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S02, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S03, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S04, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S05, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S06, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S07, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S08, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S09, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S10, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S11, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S12, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S13, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S14, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S15, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S16, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->S17, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->STB, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->MOHH, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->MA, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 border">
+                                <td class="group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($values->UT, 1, ",", ".")}}
                                 </td>
                             </tr>
@@ -258,98 +258,98 @@
                                                 });
                                             @endphp
                                             @foreach($hasilFilter as $ft)
-                                            <td colspan="2" class="px-4 py-3 border">Sub Total</td>
-                                            <td class="px-4 py-3 border">
+                                            <td colspan="2" class="group-hover:bg-gray-400 group-hover:text-white">Sub Total</td>
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{$values->NOM_UNIT}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->OB, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->ROOM, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->POR, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->TRAV, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->GEN, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->RENT, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->TOTAL, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->BD, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S00, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S01, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S02, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S03, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S04, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S05, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S06, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S07, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S08, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S09, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S10, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S11, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S12, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S13, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S14, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S15, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S16, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S17, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->STB, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->MOHH, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->MA, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->UT, 1, ",", ".")}}
                                             </td>
                                             @endforeach
@@ -364,98 +364,98 @@
                                             });
                                         @endphp
                                         @foreach($hasilFilter as $ft)
-                                            <td class="px-4 py-3 border">Sub Total</td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">Sub Total</td>
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{$values->NOM_UNIT}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->OB, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->ROOM, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->POR, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->TRAV, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->GEN, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->RENT, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->TOTAL, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->BD, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S00, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S01, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S02, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S03, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S04, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S05, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S06, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S07, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S08, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S09, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S10, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S11, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S12, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S13, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S14, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S15, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S16, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->S17, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->STB, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->MOHH, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->MA, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 border">
+                                            <td class="group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($values->UT, 1, ",", ".")}}
                                             </td>
                                         @endforeach

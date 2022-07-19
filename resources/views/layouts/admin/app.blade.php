@@ -9,12 +9,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{{asset('css/tailwind.output.css')}}" />
+    <link rel="stylesheet" href="{{asset('css/tailwind.output.css', true)}}" />
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
     ></script>
-    <script src="{{asset('js/init-alpine.js')}}"></script>
+    <script src="{{asset('js/init-alpine.js', true)}}"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
@@ -23,9 +23,12 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
       defer
     ></script>
-    <script src="{{asset('js/charts-lines.js')}}" defer></script>
-    <script src="{{asset('js/dragup.js')}}" defer></script>
-    <script src="{{asset('js/charts-pie.js')}}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{asset('js/charts-lines.js', true)}}" defer></script>
+    <script src="{{asset('js/dragup.js', true)}}" defer></script>
+    <script src="{{asset('js/charts-pie.js', true)}}" defer></script>
+    <meta name="csrf-token" content="{{csrf_token()}}" />
+
     <title>PT RCI | PMA 2023</title>
 </head>
 <body>
@@ -94,7 +97,7 @@
                       d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                     ></path>
                   </svg>
-                  <span class="ml-4">Production</span>
+                  <span class="ml-4">Operation</span>
                 </span>
                 <svg
                   class="w-4 h-4"
@@ -134,7 +137,7 @@
                       aria-haspopup="true"
                     >
                       <span class="inline-flex items-center">
-                        <span >Plant</span>
+                        <span >Laporan</span>
                       </span>
                       <svg
                         class="w-4 h-4"
@@ -167,9 +170,6 @@
                           <a href="{{route('pma2b.populasi.index')}}">Produksi A2B</a>
                         </li>
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
-                          <a href="{{route('populasi-plant.index')}}">Produksi Plant</a>
-                        </li>
-                        <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
                           <a href="{{route('distribusi-jam-tp.index')}}">Distribusi Jam TP</a>
                         </li>
                         <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
@@ -177,7 +177,6 @@
                         </li>
                       </ul>
                     </template>
-                    
                   </li>
                 </ul>
               </template>
@@ -229,17 +228,104 @@
                     class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                     aria-label="submenu"
                   >
+                  <li
+                      class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    >
+                      <button
+                        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                        @click="togglePagesMenu5"
+                        aria-haspopup="true"
+                      >
+                        <span class="inline-flex items-center">
+                          <span >Transaksi</span>
+                        </span>
+                        <svg
+                          class="w-4 h-4"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </button>
+                      <template x-if="isPagesMenuOpen5">
+                        <ul
+                          x-transition:enter="transition-all ease-in-out duration-300"
+                          x-transition:enter-start="opacity-25 max-h-0"
+                          x-transition:enter-end="opacity-100 max-h-xl"
+                          x-transition:leave="transition-all ease-in-out duration-300"
+                          x-transition:leave-start="opacity-100 max-h-xl"
+                          x-transition:leave-end="opacity-0 max-h-0"
+                          class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                          aria-label="submenu"
+                        >
+                          <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            <a href="{{route('transaksi-plant.index')}}">
+                              Transaksi HM
+                            </a>
+                          </li>
+                          <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            <a href="{{route('transaksi-unit.index')}}">
+                              Transaksi Unit
+                            </a>
+                          </li>
+                        </ul>
+                      </template>
+                    </li>
+                    
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="pages/login.html">Transaksi</a>
+                      <a class="w-full" href="{{route('transaksi-plant.ma')}}">
+                        MA Unit
+                      </a>
                     </li>
                     <li
                       class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                     >
-                      <a class="w-full" href="#">
-                        Laporan
-                      </a>
+                      <button
+                        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                        @click="togglePagesMenu6"
+                        aria-haspopup="true"
+                      >
+                        <span class="inline-flex items-center">
+                          <span>Laporan</span>
+                        </span>
+                        <svg
+                          class="w-4 h-4"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </button>
+                      <template x-if="isPagesMenuOpen6">
+                        <ul
+                          x-transition:enter="transition-all ease-in-out duration-300"
+                          x-transition:enter-start="opacity-25 max-h-0"
+                          x-transition:enter-end="opacity-100 max-h-xl"
+                          x-transition:leave="transition-all ease-in-out duration-300"
+                          x-transition:leave-start="opacity-100 max-h-xl"
+                          x-transition:leave-end="opacity-0 max-h-0"
+                          class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                          aria-label="submenu"
+                        >
+                          <li class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                            <a href="{{route('populasi-plant.index')}}">
+                              Produksi Plant
+                            </a>
+                          </li>
+                        </ul>
+                      </template>
                     </li>
                   </ul>
                 </template>
@@ -265,7 +351,7 @@
                         d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
                       ></path>
                     </svg>
-                    <span class="ml-4">Personalia</span>
+                    <span class="ml-4">PGA</span>
                   </span>
                   <svg
                     class="w-4 h-4"
@@ -864,7 +950,7 @@
         x-transition:leave-end="opacity-0  transform translate-y-1/2"
         @click.away="closeModal2"
         @keydown.escape="closeModal2"
-        class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
+        class="w-full px-6 py-4 overflow-hidden bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl "
         role="dialog"
         id="modal2"
       >

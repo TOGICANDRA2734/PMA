@@ -56,12 +56,12 @@
 
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
-            <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap border table-fixed">
-                    <thead class="bg-stone-800">
+            <div class="w-full overflow-x-auto max-h-96 md:max-h-[38rem]">
+                <table class="w-full whitespace-no-wrap border table-auto">
+                    <thead class="bg-stone-800 sticky top-0 z-20">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
-                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone sticky left-0 bg-stone-800 z-20">No Unit</th>
                             <th colspan="5" class="px-4 py-3 text-center border-r">Jam Unit</th>
                             <th colspan="4" class="px-4 py-3 text-center border-none">Produksi</th>
                         </tr>
@@ -80,45 +80,45 @@
 
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @foreach($data as $key => $dt) 
-                            <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
-                                <td class="px-4 py-3 text-sm">
+                            <tr class="group data-row text-center text-gray-700 dark:text-gray-400 ease-in-out duration-150" onclick="changeColor(this)">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     @if (request()->jenisTampilan == "0")
                                         {{(($data->currentPage()-1) * $data->perPage()) + ($key+1)}}
                                     @else
                                         {{$key+1}}
                                     @endif
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td id="nom_unit" class="px-4 py-3 text-sm sticky left-0 bg-white group-hover:bg-gray-400 group-hover:text-white">
                                     {{$dt->NOM_UNIT}}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->WH, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->WHOB, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->BD, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->STB, 1, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->MOHH, 0, ",", ".")}}
                                 </td>
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->RITASI,1, ",", ".")}}
                                 </td>
                                 
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->OB,0, ",", ".")}}
                                 </td>
                                 
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->DIST,0, ",", ".")}}
                                 </td>
                                 
-                                <td class="px-4 py-3 text-sm">
+                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                     {{number_format($dt->PTY,0, ",", ".")}}
                                 </td>
                             </tr>
@@ -130,41 +130,41 @@
 
                                     @if(substr($dt->NOM_UNIT,0,2) != substr($nextRow->NOM_UNIT,0,2))
                                         <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
-                                            <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white" colspan="2">Total Unit</td>
                                             @php
                                                 $hasilFilter = $filter->filter(function($item, $key) use ($dt){
                                                     return in_array($key, [substr($dt->NOM_UNIT,0,2)]);
                                                 });
                                             @endphp
                                             @foreach($hasilFilter as $ft)
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->WH, 1, ",", ".")}}
                                                 </td>
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->WHOB, 1, ",", ".")}}
                                                 </td>
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->BD, 1, ",", ".")}}
                                                 </td>
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->STB, 1, ",", ".")}}
                                                 </td>
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->MOHH, 0, ",", ".")}}
                                                 </td>
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->RITASI,1, ",", ".")}}
                                                 </td>
                                                 
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->OB,0, ",", ".")}}
                                                 </td>
                                                 
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->DIST,0, ",", ".")}}
                                                 </td>
                                                 
-                                                <td class="px-4 py-3 text-sm">
+                                                <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                     {{number_format($ft->PTY,0, ",", ".")}}
                                                 </td>
                                             @endforeach
@@ -172,41 +172,41 @@
                                     @endif
                                 @elseif($key == count($data)-1)
                                     <tr class="data-row text-center text-gray-700 bg-gray-300 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150">
-                                        <td class="px-4 py-3 text-sm" colspan="2">Total Unit</td>
+                                        <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white" colspan="2">Total Unit</td>
                                         @php
                                             $hasilFilter = $filter->filter(function($item, $key) use ($dt){
                                                 return in_array($key, [substr($dt->NOM_UNIT,0,2)]);
                                             });
                                         @endphp
                                         @foreach($hasilFilter as $ft)
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->WH, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->WHOB, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->BD, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->STB, 1, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->MOHH, 0, ",", ".")}}
                                             </td>
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->RITASI,1, ",", ".")}}
                                             </td>
                                             
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->OB,0, ",", ".")}}
                                             </td>
                                             
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->DIST,0, ",", ".")}}
                                             </td>
                                             
-                                            <td class="px-4 py-3 text-sm">
+                                            <td class="px-4 py-3 text-sm group-hover:bg-gray-400 group-hover:text-white">
                                                 {{number_format($ft->PTY,0, ",", ".")}}
                                             </td>
                                         @endforeach
@@ -228,7 +228,9 @@
 <script>
     function changeColor(el){
         $('.data-row').removeClass('bg-gray-200', 'text-gray-700')
+        $('#nom_unit').removeClass('bg-white')
         $(el).addClass('bg-gray-200', 'text-white')
+        $('#nom_unit').addClass('bg-gray-200', 'text-white')
     }
 </script>
 @endsection

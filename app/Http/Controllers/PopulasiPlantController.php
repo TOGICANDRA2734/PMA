@@ -25,11 +25,12 @@ class PopulasiPlantController extends Controller
 
         $data = DB::table('plant_populasi')->select()
         ->join('plant_hm', 'plant_populasi.nom_unit', '=', 'plant_hm.nom_unit')
+        ->join('site', 'plant_hm.kodesite', '=', 'site.kodesite')
         ->when(request()->site, function($data){
             $data = $data->where('plant_hm.kodesite', '=', request()->site);
         })
         ->when(request()->jenisTipe, function($data){
-            $data = $data->where('plant_populasi.model', '=', request()->jenisTipe);
+            $data = $data->where('plant_populasi.type_unit', '=', request()->jenisTipe);
         })
         ->when(request()->jenisBrand, function($data){
             $data = $data->where('plant_populasi.engine_brand', '=', request()->jenisBrand);
@@ -56,7 +57,7 @@ class PopulasiPlantController extends Controller
         $jenisTipe = collect(DB::select(
             DB::raw("
                 SELECT 
-                DISTINCT model
+                DISTINCT type_unit
                 FROM plant_populasi
             ")
         ));
@@ -76,7 +77,7 @@ class PopulasiPlantController extends Controller
             $data = $data->where('plant_hm.kodesite', '=', request()->site);
         })
         ->when(request()->jenisTipe, function($data){
-            $data = $data->where('plant_populasi.model', '=', request()->jenisTipe);
+            $data = $data->where('plant_populasi.type_unit', '=', request()->jenisTipe);
         })
         ->when(request()->nama, function($data){
             $data = $data->where('plant_populasi.nom_unit', 'like', '%'.request()->nama.'%');
@@ -87,5 +88,15 @@ class PopulasiPlantController extends Controller
 
         
         return view('plant.index', compact('data', 'site', 'jenisTipe', 'jenisBrand', 'summary'));
+    }
+
+    public function getUserbyid(Request $request){
+
+        $userid = $request->userid;
+
+        $data = DB::table('plant_populasi')->select('*')->join('plant_hm', 'plant_populasi.nom_unit', '=', 'plant_hm.nom_unit')->where('plant_hm.id', $userid)->get();
+        $response['data'] = $data;
+        
+        return response()->json($response);
     }
 }

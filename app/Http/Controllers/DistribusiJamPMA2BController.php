@@ -52,7 +52,9 @@ class DistribusiJamPMA2BController extends Controller
         SUM(IF(kode='s15',jam,0)) s15,
         SUM(IF(kode='s16',jam,0)) s16,
         SUM(IF(kode='s17',jam,0)) s17,
-        SUM(IF(LEFT(kode,1)='S',jam,0)) total_stb"))
+        SUM(IF(LEFT(kode,1)='S',jam,0)) total_stb,
+        ((SUM(jam) - SUM(IF((LEFT(kode, 1)='B'),JAM,0))) / SUM(JAM) ) * 100 AS MA,
+        (SUM(IF((LEFT(kode, 1)='0'),JAM,0)) / (SUM(JAM) - SUM(IF((LEFT(kode, 1)='b'),JAM,0)))) * 100 AS UT"))
         ->when((request()->bulan) == null, function($data){
             $bulan = Carbon::now();
             $data = $data->whereBetween('TGL', [$bulan->startOfMonth()->copy(), $bulan->endOfMonth()->copy()]);

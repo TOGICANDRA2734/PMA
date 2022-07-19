@@ -38,12 +38,12 @@
 
         <!-- Content Table -->
         <div class="w-full overflow-hidden rounded-lg shadow-xs mt-5 mb-5">
-            <div class="w-full overflow-x-auto"  style="max-height: 36rem;">
-                <table class="w-full whitespace-no-wrap border">
-                    <thead class="bg-stone-800 sticky top-0">
+            <div class="w-full overflow-x-auto max-h-96 md:max-h-[38rem]">
+                <table class="w-full whitespace-no-wrap border table-auto">
+                    <thead class="bg-stone-800 sticky top-0 z-20">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
                             <th rowspan="2" class="px-4 py-3 border-b border-r border-stone w-20">No</th>
-                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone">No Unit</th>
+                            <th rowspan="2" class="px-4 py-3 border-b border-r border-stone sticky left-0 top-0 bg-stone-800">No Unit</th>
                             <th colspan="5" class="px-4 py-3 text-center border-r">Jam Unit</th>
                             <th colspan="4" class="px-4 py-3 text-center border-none">Produksi</th>
                         </tr>
@@ -59,20 +59,25 @@
                             <th class="px-4 py-3 border">Jarak</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                    <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800">
                         @foreach($data as $key => $values)
-                            <tr class="data-row text-center text-gray-700 dark:text-gray-400 hover:bg-gray-400 hover:text-white ease-in-out duration-150" onclick="changeColor(this)">
-                                <td class="px-4 py-3 border">{{$key+1}}</td>
+                            <tr class="group data-row text-center text-gray-700 dark:text-gray-400 ease-in-out duration-150" onclick="changeColor(this)">
+                                <td class="px-4 py-3 border bg-white group-hover:bg-gray-400 group-hover:text-white">{{$key+1}}</td>
+                                <td class="px-4 py-3 border bg-white group-hover:bg-gray-400 group-hover:text-white sticky left-0">
+                                    {{$data[$key]->nom_unit}}
+                                </td>
                                 @foreach($values as $keys => $value)
                                     @if($keys != "distbcm")
-                                        @if(is_double($value))
-                                            <td class="px-4 py-3 border">
-                                                {{number_format($value, 1, ",", ".")}}
-                                            </td>
-                                        @else
-                                            <td class="px-4 py-3 border">
-                                                {{$value}}
-                                            </td>
+                                        @if($keys != "nom_unit")
+                                            @if(is_double($value))
+                                                <td class="px-4 py-3 border bg-white group-hover:bg-gray-400 group-hover:text-white">
+                                                    {{number_format($value, 1, ",", ".")}}
+                                                </td>
+                                            @else
+                                                <td class="px-4 py-3 border bg-white group-hover:bg-gray-400 group-hover:text-white">
+                                                    {{$value}}
+                                                </td>
+                                            @endif
                                         @endif
                                     @endif
                                 @endforeach

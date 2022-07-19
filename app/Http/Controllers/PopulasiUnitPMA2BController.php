@@ -101,6 +101,7 @@ class PopulasiUnitPMA2BController extends Controller
         WHERE status=1
         ORDER BY namasite")));
 
+
         $data = $data->values();
         return view('pma2b.populasi.index', compact('data', 'site', 'filter'));
     }

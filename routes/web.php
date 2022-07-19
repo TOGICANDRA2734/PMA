@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\cobacobacontroller;
 use App\Http\Controllers\DistribusiJamPMA2BController;
+use App\Http\Controllers\MAUnitController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PDFViewController;
 use App\Http\Controllers\PopulasiPlantController;
@@ -11,6 +12,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\testingController;
 use App\Http\Controllers\TPController;
+use App\Http\Controllers\TransaksiPlantController;
+use App\Http\Controllers\TransaksiUnitController;
 use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +41,12 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index
 Route::get('/populasi-unit-pma2b', [PopulasiUnitPMA2BController::class, 'index'])->name('pma2b.populasi.index');
 Route::get('/distribusi-jam-pma2b', [DistribusiJamPMA2BController::class, 'index'])->name('pma2b.distribusi.index');
 Route::get('/populasi-plant', [PopulasiPlantController::class, 'index'])->name('populasi-plant.index');
+Route::post('/populasi-plant/show', [PopulasiPlantController::class, 'getUserbyid'])->name('populasi-plant.show');
+Route::get('/transaksi-plant', [TransaksiPlantController::class, 'index'])->name('transaksi-plant.index');
+Route::post('/transaksi-plant/store', [TransaksiPlantController::class, 'store'])->name('transaksi-plant.post');
+Route::get('/transaksi-unit', [TransaksiUnitController::class, 'index'])->name('transaksi-unit.index');
+Route::post('/transaksi-unit/store', [TransaksiUnitController::class, 'store'])->name('transaksi-unit.store');
+Route::get('/MA-unit', [MAUnitController::class, 'index'])->name('transaksi-plant.ma');
 
 // File Permintaan pak Fantri untuk DB RAW
 Route::get('/cobacoba', [cobacobacontroller::class, 'index'])->name('cobacoba');

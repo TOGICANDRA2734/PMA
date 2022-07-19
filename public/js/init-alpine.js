@@ -63,6 +63,14 @@ function data() {
     togglePagesMenu4() {
       this.isPagesMenuOpen4 = !this.isPagesMenuOpen4
     },
+    isPagesMenuOpen5: false,
+    togglePagesMenu5() {
+      this.isPagesMenuOpen5 = !this.isPagesMenuOpen5
+    },
+    isPagesMenuOpen6: false,
+    togglePagesMenu6() {
+      this.isPagesMenuOpen6 = !this.isPagesMenuOpen6
+    },
     isDetailPlantOpen: false,
     toggleDetailPlant() {
       this.isDetailPlantOpen = !this.isDetailPlantOpen

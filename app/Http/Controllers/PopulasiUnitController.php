@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -16,37 +17,9 @@ class PopulasiUnitController extends Controller
         FROM SITE
         WHERE status=1
         ORDER BY namasite")));
-        // dd($site);
-        
-        // $site = Cache::remember('site', 86400, function(){
-        //     return DB::table('site')->select('kodesite','namasite','lokasi')->orderBy('namasite')->get();
-        // });
 
         // Jenis / Tipe
         $jenis = DB::select(DB::raw("SELECT * FROM kode_unit"));
-
-        // $jenis = collect(DB::select(DB::raw("SELECT DISTINCT LEFT(NOM_UNIT, 2)
-        // FROM PMATP
-        // ORDER BY NOM_UNIT")))->pluck('LEFT(NOM_UNIT, 2)')->values();
-        // dd($jenis);
-
-        // $jenis = DB::table('pmatp')->select('NOM_UNIT')->distinct()->orderBy('NOM_UNIT')->get();
-        // $jenis = $jenis->pluck('NOM_UNIT')->map(function($item){
-        //     return substr($item, 0, 2);
-        // })->unique()->values();
-
-        // data
-        // $data = collect(DB::select(DB::raw("SELECT NOM_UNIT,
-        // SUM(IF((LEFT(AKTIVITAS, 1)='0'),JAM,0)) AS WH,
-        // SUM(IF((LEFT(AKTIVITAS, 1)='b'),JAM,0)) AS BD,
-        // SUM(IF((LEFT(AKTIVITAS, 1)='s'),JAM,0)) AS STB,
-        // SUM(JAM) AS MOHH
-        // FROM pmatp
-        // GROUP BY NOM_UNIT")))
-        // ->when(request()->site, function(){
-
-        // });        
-        
 
         // Main Data
         $data = DB::table('pmatp')
@@ -100,7 +73,7 @@ class PopulasiUnitController extends Controller
                 'PTY' => $group->sum('PTY'),
             ]];
         });
-        // dd(request()->jenisTampilan);
+        
         
         if(request()->jenisTampilan == "0" || is_null(request()->jenisTampilan)){
             $data = $data->values()->paginate(request()->paginate ? request()->paginate : 50)->withQueryString();
