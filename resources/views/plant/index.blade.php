@@ -10,7 +10,7 @@
         <form action="{{route(request()->route()->getName())}}" method="GET" class="grid grid-cols-4 gap-4">
             <!-- Site -->
             <div class="">
-                <label fo class="font-bold pb-1 text-sm"r="site">Nama Site</label>
+                <label fo class="font-bold pb-1 text-sm" for="site">Nama Site</label>
                 <select class="p-2 border border-gray-100 rounded-md w-full" name="site" id="site">
                     <option value="" selected>Semua Site</option>
 
@@ -68,7 +68,7 @@
                             <th rowspan="2" class="px-4 py-3 border">HP</th>
                             <th rowspan="2" class="px-4 py-3 border">Fuel</th>
                             <th rowspan="2" class="px-4 py-3 border">WH</th>
-                            <th rowspan="2" class="px-4 py-3 border">KH</th>
+                            <th rowspan="2" class="px-4 py-3 border">KM</th>
                             <th rowspan="2" class="px-4 py-3 border">Site</th>
                             <th rowspan="2" class="px-4 py-3 border">Aksi</th>
                         </tr>
@@ -215,6 +215,14 @@
         $(el).addClass('bg-gray-200', 'text-white')
     }
 </script>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+    });
+</script>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script>
+{!! $userChart->script() !!}
 @endsection
 
 @section('javascripts')
@@ -235,6 +243,7 @@
                     dataType: 'json',
                     success: function(response){
                         createRows(response);
+                        console.log(response);
                     }
                 });
             }
@@ -252,9 +261,9 @@
 
         if(len > 0){
             var image = 
-                "<img class='rounded-md pb-3 w-full' src='https://images.unsplash.com/photo-1622645636770-11fbf0611463?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80' alt=''/>" +
-                "<img class='rounded-md pb-3 w-full' src='https://images.unsplash.com/photo-1622645636770-11fbf0611463?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80' alt=''/>" ;
-                $("#imageUnit").append(image);
+            "<img class='rounded-md pb-3 w-full' src='https://images.unsplash.com/photo-1622645636770-11fbf0611463?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80' alt=''/>" +
+            "<img class='rounded-md pb-3 w-full' src='https://images.unsplash.com/photo-1622645636770-11fbf0611463?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80' alt=''/>" ;
+            $("#imageUnit").append(image);
 
             var tr_str = 
                     "<tr class='data-row text-center text-gray-700 dark:text-gray-400'>"+
@@ -314,7 +323,7 @@
             <div class="w-full overflow-y-auto sm:max-h-[20rem] mt-3 mb-3">
                 <h2 class="font-bold mb-2">Data Unit</h2>
                 <div class="grid grid-cols-1 gap-5">
-                    <canvas id="line" class="w-full p-5"></canvas>
+                    {{ $userChart->container() }}
                 </div>
                 <div id="imageUnit" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 </div>

@@ -123,7 +123,7 @@
             </label>
 
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Height</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Height <span class="text-xs opacity-30">(Meter)</span></span>
                 <input
                     name="height"
                     class="block shadow-sm border p-2 rounded-md w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -132,7 +132,7 @@
             </label>
 
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Width</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Width <span class="text-xs opacity-30">(Meter)</span></span>
                 <input
                     name="width"
                     class="block shadow-sm border p-2 rounded-md w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -141,7 +141,7 @@
             </label>
 
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Length</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Length <span class="text-xs opacity-30">(Meter)</span></span>
                 <input
                     name="length"
                     class="block shadow-sm border p-2 rounded-md w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -150,7 +150,7 @@
             </label>
     
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Fuel</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Fuel <span class="text-xs opacity-30">(Liter)</span></span>
                 <input
                     name="fuel"
                     class="block shadow-sm border p-2 rounded-md w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-stone-400 focus:outline-none focus:shadow-outline-stone dark:text-gray-300 dark:focus:shadow-outline-gray form-input"

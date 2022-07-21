@@ -28,7 +28,14 @@ class MAUnitController extends Controller
             MONTHNAME(pmaa2b.tgl) AS month_name        
         "))
         ->join('pmaa2b', 'plant_populasi.nom_unit', '=','pmaa2b.nom_unit')
-        ->whereBetween('tgl', ['2022-01-01','2022-12-31'])
+        ->when((request()->tahun) == null, function($data){
+            $tahun = Carbon::now();
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
+        ->when(request()->tahun, function($data){
+            $tahun = Carbon::createFromFormat('Y', request()->tahun);
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
         ->when(request()->site, function($data){
             $data = $data->where('pmaa2b.kodesite', '=', request()->site);
         })
@@ -44,7 +51,14 @@ class MAUnitController extends Controller
             MONTHNAME(pmaa2b.tgl) AS month_name        
         "))
         ->join('pmaa2b', 'plant_populasi.nom_unit', '=','pmaa2b.nom_unit')
-        ->whereBetween('tgl', ['2022-01-01','2022-12-31'])
+        ->when((request()->tahun) == null, function($data){
+            $tahun = Carbon::now();
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
+        ->when(request()->tahun, function($data){
+            $tahun = Carbon::createFromFormat('Y', request()->tahun);
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
         ->when(request()->site, function($data){
             $data = $data->where('pmaa2b.kodesite', '=', request()->site);
         })
@@ -61,7 +75,14 @@ class MAUnitController extends Controller
             MONTHNAME(pmatp.tgl) AS month_name
         "))
         ->join('pmatp', 'plant_populasi.nom_unit', '=','pmatp.nom_unit')
-        ->whereBetween('tgl', ['2022-01-01','2022-12-31'])
+        ->when((request()->tahun) == null, function($data){
+            $tahun = Carbon::now();
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
+        ->when(request()->tahun, function($data){
+            $tahun = Carbon::createFromFormat('Y', request()->tahun);
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
         ->when(request()->site, function($data){
             $data = $data->where('pmatp.kodesite', '=', request()->site);
         })
@@ -77,7 +98,14 @@ class MAUnitController extends Controller
             MONTHNAME(pmatp.tgl) AS month_name        
         "))
         ->join('pmatp', 'plant_populasi.nom_unit', '=','pmatp.nom_unit')
-        ->whereBetween('tgl', ['2022-01-01','2022-12-31'])
+        ->when((request()->tahun) == null, function($data){
+            $tahun = Carbon::now();
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
+        ->when(request()->tahun, function($data){
+            $tahun = Carbon::createFromFormat('Y', request()->tahun);
+            $data = $data->whereBetween('TGL', [$tahun->startOfYear()->copy(), $tahun->endOfYear()->copy()]);
+        })
         ->when(request()->site, function($data){
             $data = $data->where('pmatp.kodesite', '=', request()->site);
         })

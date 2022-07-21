@@ -9,8 +9,6 @@ class PopulasiPlantController extends Controller
 {
     public function index()
     {
-
-
         $data = DB::table('plant_populasi')->select()
         ->join('plant_hm', 'plant_populasi.nom_unit', '=', 'plant_hm.nom_unit')
         ->join('site', 'plant_hm.kodesite', '=', 'site.kodesite')
@@ -83,7 +81,26 @@ class PopulasiPlantController extends Controller
         $userid = $request->userid;
 
         $data = DB::table('plant_populasi')->select('*')->join('plant_hm', 'plant_populasi.nom_unit', '=', 'plant_hm.nom_unit')->where('plant_hm.id', $userid)->get();
+
+        $dataChart = DB::table('pmaa2b')->select(DB::raw("
+            MONTHNAME(TGL),
+            (SUM(jam)-SUM(IF(LEFT(kode,1)='B',jam,0)))/SUM(jam) AS MA
+        "))
+        ->where('nom_unit', '=', $data[0]->nom_unit)
+        ->get();
+        
+        
+        if(!isset($dataChart)){
+            $dataChart = DB::table('pmatp')->select(DB::raw("
+                MONTHNAME(TGL),
+                (SUM(jam)-SUM(IF(LEFT(aktivitas,1)='B',jam,0)))/SUM(jam) AS MA
+            "))
+            ->where('nom_unit', '=', $data[0]->nom_unit)
+            ->get();
+        }
+
         $response['data'] = $data;
+        $response['dataChart'] = $dataChart;
         
         return response()->json($response);
     }

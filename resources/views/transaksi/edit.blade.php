@@ -129,7 +129,7 @@
             </label>
 
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Height</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Height <span class="text-xs opacity-30">(Meter)</span></span>
                 <input
                     name="height"
                     value="{{ old('height', $plant->height) }}"
@@ -139,7 +139,7 @@
             </label>
 
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Width</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Width <span class="text-xs opacity-30">(Meter)</span></span>
                 <input
                     name="width"
                     value="{{ old('width', $plant->width) }}"
@@ -149,7 +149,7 @@
             </label>
 
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Length</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Length <span class="text-xs opacity-30">(Meter)</span></span>
                 <input
                     name="length"
                     value="{{ old('length', $plant->length) }}"
@@ -159,7 +159,7 @@
             </label>
     
             <label class="block mt-4 text-sm">
-                <span class="font-semibold text-gray-700 dark:text-gray-400">Fuel</span>
+                <span class="font-semibold text-gray-700 dark:text-gray-400">Fuel Capacity <span class="text-xs opacity-30">(Liter)</span></span>
                 <input
                     name="fuel"
                     value="{{ old('fuel', $plant->fuel) }}"
