@@ -9,19 +9,7 @@ class PopulasiPlantController extends Controller
 {
     public function index()
     {
-        // $data = collect(DB::select(
-        //     DB::raw("
-        //         SELECT A.*, B.*
-        //         FROM plant_populasi A
-        //         JOIN (SELECT nom_unit,hm,km,tgl,kodesite FROM plant_hm) B
-        //         ON A.nom_unit = B.nom_unit
-        //     "))
-        // )
-        // ->when(request()->site, function($data){
-        //     $data = $data->where('kodesite', '=', request()->site);
-        // });
 
-        // dd($data);
 
         $data = DB::table('plant_populasi')->select()
         ->join('plant_hm', 'plant_populasi.nom_unit', '=', 'plant_hm.nom_unit')

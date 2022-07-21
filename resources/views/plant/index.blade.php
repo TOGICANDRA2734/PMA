@@ -44,6 +44,9 @@
         </form>
 
         <form class="flex justify-end mt-5" action="{{route(request()->route()->getName())}}" method="GET">
+            @foreach (request()->all() as $key => $values) 
+                <input type="hidden" name="{{$key}}" id="{{$key}}" class="text-black w-7 text-xs" value="{{$values}}">
+            @endforeach
             <input name="nama" id="nama" type="text" placeholder="Cari data" class="p-2 rounded-md mr-3 w-full md:w-auto text-xs md:text-sm" autocomplete="off">
             <button class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-stone-600 border border-transparent rounded-md active:bg-stone-600 hover:bg-stone-700 focus:outline-none focus:shadow-outline-purple">
                 Cari
@@ -56,24 +59,23 @@
                 <table class="w-full whitespace-no-wrap border table-auto">
                     <thead class="bg-stone-800 sticky top-0 z-20">
                         <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
-                            <th class="px-4 py-3 border">No</th>
-                            <th class="px-4 py-3 border sticky left-0 bg-stone-800 z-20">Nom Unit</th>
+                            <th rowspan="2" class="px-4 py-3 border">No</th>
+                            <th rowspan="2" class="px-4 py-3 border sticky left-0 bg-stone-800 z-20">Nom Unit</th>
+                            <th rowspan="2" class="px-4 py-3 border">Model</th>
+                            <th rowspan="2" class="px-4 py-3 border">Type Unit</th>
+                            <th rowspan="2" class="px-4 py-3 border">S/N</th>
+                            <th colspan="3" class="px-4 py-3 border">Engine</th>
+                            <th rowspan="2" class="px-4 py-3 border">HP</th>
+                            <th rowspan="2" class="px-4 py-3 border">Fuel</th>
+                            <th rowspan="2" class="px-4 py-3 border">WH</th>
+                            <th rowspan="2" class="px-4 py-3 border">KH</th>
+                            <th rowspan="2" class="px-4 py-3 border">Site</th>
+                            <th rowspan="2" class="px-4 py-3 border">Aksi</th>
+                        </tr>
+                        <tr class="text-xs font-semibold tracking-wide text-center text-white uppercase border-b dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800">
+                            <th class="px-4 py-3 border">Brand</th>
                             <th class="px-4 py-3 border">Model</th>
-                            <th class="px-4 py-3 border">Type Unit</th>
                             <th class="px-4 py-3 border">SN</th>
-                            <th class="px-4 py-3 border">Engine Brand</th>
-                            <th class="px-4 py-3 border">Engine Model</th>
-                            <th class="px-4 py-3 border">Engine SN</th>
-                            <th class="px-4 py-3 border">HP</th>
-                            <!-- <th class="px-4 py-3 border">DO</th> -->
-                            <!-- <th class="px-4 py-3 border">Height</th> -->
-                            <!-- <th class="px-4 py-3 border">Width</th> -->
-                            <!-- <th class="px-4 py-3 border">Length</th> -->
-                            <th class="px-4 py-3 border">Fuel</th>
-                            <th class="px-4 py-3 border">WH</th>
-                            <th class="px-4 py-3 border">KH</th>
-                            <th class="px-4 py-3 border">Site</th>
-                            <th class="px-4 py-3 border">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -141,12 +143,12 @@
                                     <button @click="openModal2" value="{{$dt->id}}" class="tbDetail px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-stone-800 border border-transparent rounded-md active:bg-stone-800 hover:bg-stone-900 focus:outline-none focus:shadow-outline-purple">
                                         ...
                                     </button>
-                                    <a href="{{route('transaksi-unit.edit', ['id' => $dt->id])}}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-yellow-400 border border-transparent rounded-md active:bg-yellow-600 hover:bg-yellow-900 focus:outline-none focus:shadow-outline-purple">
+                                    <!-- <a href="{{route('transaksi-unit.edit', ['id' => $dt->id])}}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-yellow-400 border border-transparent rounded-md active:bg-yellow-600 hover:bg-yellow-900 focus:outline-none focus:shadow-outline-purple">
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
                                     <button onClick="destroy(this.id)" id="{{ $dt->id }}" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-500 border border-transparent rounded-md active:bg-red-600 hover:bg-red-900 focus:outline-none focus:shadow-outline-purple">
                                         <i class="fa-solid fa-trash"></i>
-                                    </button>
+                                    </button> -->
                                 </td>
                             </tr>
                         @endforeach

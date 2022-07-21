@@ -9,12 +9,11 @@
 
         <form action="{{route(request()->route()->getName())}}" method="GET" class="grid grid-cols-3 gap-4">
             <div class="">
-                <label class="font-bold pb-1 text-sm" for="type">Type Unit</label>
-                <select class="p-2 border border-gray-100 rounded-md w-full" name="type" id="type">
-                    <option value="" selected>Semua Unit</option>
-                    @foreach ($jenisTipe as $jt)
-                        <option value="{{$jt->type_unit}}" {{old('jenisTipe', request()->jenisTipe) == $jt->type_unit ? 'selected' : ''}}>{{$jt->type_unit}}</option>
-                    @endforeach
+                <label class="font-bold pb-1 text-sm" for="tahun">Tahun</label>
+                <select class="p-2 border border-gray-100 rounded-md w-full" name="tahun" id="tahun">
+                @for($year=2022; $year>=2016; $year--)
+                    <option value="{{$year}}" {{old('tahun', request()->tahun) == $year ? 'selected' : ''}}>{{$year}}</option>
+                @endfor
                 </select>
             </div>
             <div class="">
