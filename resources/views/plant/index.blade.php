@@ -222,7 +222,6 @@
     });
 </script>
 <script src=https://cdnjs.cloudflare.com/ajax/libs/echarts/4.0.2/echarts-en.min.js charset=utf-8></script>
-{!! $userChart->script() !!}
 @endsection
 
 @section('javascripts')
@@ -237,7 +236,7 @@
             if(userid >= 0 ){
                 // AJAX POST request
                 $.ajax({
-                    url: '{{ route("populasi-plant.show") }}',
+                    url: '{{ route("populasi-plant.showUser") }}',
                     type: 'post',
                     data: {_token: CSRF_TOKEN, userid: userid},
                     dataType: 'json',
@@ -323,7 +322,6 @@
             <div class="w-full overflow-y-auto sm:max-h-[20rem] mt-3 mb-3">
                 <h2 class="font-bold mb-2">Data Unit</h2>
                 <div class="grid grid-cols-1 gap-5">
-                    {{ $userChart->container() }}
                 </div>
                 <div id="imageUnit" class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 </div>

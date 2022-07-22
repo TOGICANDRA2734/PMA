@@ -162,11 +162,4 @@
         </form>
     </div>    
 </main>
-
-<script>
-    function changeColor(el){
-        $('.data-row').removeClass('bg-gray-200', 'text-gray-700')
-        $(el).addClass('bg-gray-200', 'text-white')
-    }
-</script>
 @endsection

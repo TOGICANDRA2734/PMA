@@ -12,11 +12,7 @@ class TransaksiUnitController extends Controller
 {
     public function index()
     {
-        $model = DB::table('plant_populasi')->distinct()->select('model')->get();
-        $type_unit =  DB::table('plant_populasi')->distinct()->select('type_unit')->get();
-        $engine_brand = DB::table('plant_populasi')->distinct()->select('engine_brand')->get();
         
-        return view('transaksi.unit', compact('model', 'type_unit', 'engine_brand'));
     }
 
     public function store(Request $request)

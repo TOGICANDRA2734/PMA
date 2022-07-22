@@ -40,29 +40,24 @@ Route::post('/setting/update', [SettingController::class, 'update'])->name('sett
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/populasi-unit-pma2b', [PopulasiUnitPMA2BController::class, 'index'])->name('pma2b.populasi.index');
 Route::get('/distribusi-jam-pma2b', [DistribusiJamPMA2BController::class, 'index'])->name('pma2b.distribusi.index');
-Route::get('/populasi-plant', [PopulasiPlantController::class, 'index'])->name('populasi-plant.index');
-Route::post('/populasi-plant/show', [PopulasiPlantController::class, 'getUserbyid'])->name('populasi-plant.show');
-Route::get('/transaksi-plant', [TransaksiPlantController::class, 'index'])->name('transaksi-plant.index');
-Route::post('/transaksi-plant/store', [TransaksiPlantController::class, 'store'])->name('transaksi-plant.post');
+
+// Populasi Plant
+Route::resource('/populasi-plant', PopulasiPlantController::class);
+Route::post('/populasi-plant/showUser', [PopulasiPlantController::class, 'getUserbyid'])->name('populasi-plant.showUser');
 Route::get('/transaksi-unit', [TransaksiUnitController::class, 'index'])->name('transaksi-unit.index');
 Route::post('/transaksi-unit/store', [TransaksiUnitController::class, 'store'])->name('transaksi-unit.store');
 Route::get('/transaksi-unit/edit/{id}', [TransaksiUnitController::class, 'edit'])->name('transaksi-unit.edit');
 Route::put('/transaksi-unit/update/{id}', [TransaksiUnitController::class, 'update'])->name('transaksi-unit.update');
 Route::put('/transaksi-unit/destroy/{id}', [TransaksiUnitController::class, 'destroy'])->name('transaksi-unit.destroy');
+
+
+Route::get('/transaksi-plant', [TransaksiPlantController::class, 'index'])->name('transaksi-plant.index');
+Route::post('/transaksi-plant/store', [TransaksiPlantController::class, 'store'])->name('transaksi-plant.post');
 Route::get('/MA-unit', [MAUnitController::class, 'index'])->name('transaksi-plant.ma');
 
 // File Permintaan pak Fantri untuk DB RAW
 Route::get('/cobacoba', [cobacobacontroller::class, 'index'])->name('cobacoba');
 Route::get('/page', [PageController::class, 'index'])->name('page.index');
-
-// Route::prefix('plant')->group(function(){
-//     Route::group(['middleware' => 'auth'], function (){        
-//         Route::get('/populasi-unit', [PopulasiUnitController::class, 'index'])->name('plant.index');
-
-//     });
-// });
-
-Route::get('/coba', [testingController::class, 'index']);
 Route::get('generate-pdf-from-view', [PDFViewController::class, 'index']);
 
 require __DIR__.'/auth.php';
