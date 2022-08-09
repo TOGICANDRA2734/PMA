@@ -10,11 +10,9 @@ use App\Http\Controllers\PopulasiUnitController;
 use App\Http\Controllers\PopulasiUnitPMA2BController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\testingController;
 use App\Http\Controllers\TPController;
 use App\Http\Controllers\TransaksiPlantController;
 use App\Http\Controllers\TransaksiUnitController;
-use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
