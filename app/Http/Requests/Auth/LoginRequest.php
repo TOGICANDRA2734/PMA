@@ -46,16 +46,6 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        // dd($this->namauser, md5($this->sandi));
-
-        // if (! Auth::attempt(['namauser' => $this->namauser, 'password' => md5($this->sandi)], $this->boolean('remember'))) {
-        //     RateLimiter::hit($this->throttleKey());
-
-        //     throw ValidationException::withMessages([
-        //         'namauser' => trans('auth.failed'),
-        //     ]);
-        // }
-
         $user = User::where('namauser', request()->get('namauser'))->where('sandi', md5(request()->sandi))->first();
 
         // dd($user);
@@ -66,9 +56,6 @@ class LoginRequest extends FormRequest
             RateLimiter::clear($this->throttleKey());
             return redirect()->route('dashboard');
         }
-        // $user = Auth::user();
-        
-        // event(new LoginHistory($user));
 
         RateLimiter::hit($this->throttleKey());
 
